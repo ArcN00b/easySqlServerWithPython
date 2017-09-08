@@ -6,19 +6,23 @@ def printTable(conn, name):
     cursor.execute("SELECT * FROM " + name)
     results = cursor.fetchall()
 
+    # Variabili locali utili per formattare correttamente la stampa
     widths = []
     columns = []
     tavnit = '|'
     separator = '+'
 
+    # Controllo della larghezza delle varie colonne
     for cd in cursor.description:
         widths.append(max(len(cd[0]), cd[4]))
         columns.append(cd[0])
 
+    # Aggiunta della quantità di simboli da inserire per la corretta formattazione
     for w in widths:
         tavnit += " %-" + "%ss |" % (w,)
         separator += '-' * w + '--+'
 
+    # Stampa dei dati formattati
     print(separator)
     print(tavnit % tuple(columns))
     print(separator)
