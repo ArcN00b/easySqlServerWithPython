@@ -220,8 +220,8 @@ if choose == "2":
 if choose == "3":
     print("   MENU CANCELLAZIONE  ")
     print(30 * '-')
-    print("1. Cancella docenti")
-    print("2. Cancella studenti")
+    print("1. Cancella docente")
+    print("2. Cancella studente")
     print("3. Cancella un esame svolto")
     print("4. Cancella un tipo di esercitazione")
     print("5. Cancella un programma d'esame")
@@ -229,11 +229,15 @@ if choose == "3":
     print("7. Cancella una partecipazione ai gruppi")
     print("8. Torna al menu precedente")
 
+    # Input della scelta
+    choose = input()
+
     # Cancellazione scelta
-    myFunction.printTable(conn, "Docente")
-    print("Selezionare l'ID da rimuovere ", end="")
-    matricola = input()
-    myFunction.deleteFrom(conn,"Docente","Matricola", matricola)
+    if choose == "1":
+        myFunction.printTable(conn, "Docente")
+        print("Selezionare l'ID da rimuovere ", end="")
+        matricola = input()
+        myFunction.deleteFrom(conn,"Docente","Matricola", matricola)
 
 # Chiusura della connessione
 conn.close()
