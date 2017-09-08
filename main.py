@@ -65,10 +65,11 @@ if choose == "1":
             valori.append(temp)
 
         # Eseguo la query di inserimento
-        attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita,"
+        attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita"
         myFunction.insertInto(conn, "Studente", attributi, valori)
 
     # inserimento nuovo esame
+    #TODO aggiunta di collegamento tra esame e materia
     if choose == "3":
 
         # Stampo gli studenti già presenti
