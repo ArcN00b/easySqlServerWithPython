@@ -27,7 +27,7 @@ if choose == "1":
     print("4. Inserisci tipo esercitazione")
     print("5. Inserisci programma d'esame")
     print("6. Inserisci gruppo di esercitazioni")
-    print("7. Inserisci frequenza ai corsi")
+    print("7. Inserisci partecipazione ad un gruppo")
     print("8. Torna al menu precedente")
 
     # Input della scelta
@@ -167,6 +167,19 @@ if choose == "1":
 
     if choose == "8":
         os.system("cls")
+
+# Menù inserimento
+if choose == "2":
+    print("             Visualizzazione  ")
+    print(30 * '-')
+    print("1. Visualizza docenti")
+    print("2. Visualizza studenti")
+    print("3. Visualizza risultati esame")
+    print("4. Visualizza i tipi di esercitazione")
+    print("5. Visualizza i programmi d'esame")
+    print("6. Visualizza i gruppi di esercitazioni")
+    print("7. Visualizza la partecipazione ai gruppi")
+    print("8. Torna al menu precedente")
 
 # Chiusura della connessione
 conn.close()
