@@ -21,7 +21,7 @@ choose = input()
 if choose == "1":
 
     # Ripeto finchè la scelta non è 8
-    while choose != 8:
+    while choose != "8":
         print("             MENU INSERIMENTO  ")
         print(30 * '-')
         print("1. Inserisci docente")
