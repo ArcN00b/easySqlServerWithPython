@@ -8,7 +8,7 @@ cursor=conn.cursor()
     conn.commit()
 except:
     conn.rollback()'''
-cursor.execute("SELECT * FROM INFORMATION.SCHEMA WHERE TABLE_NAME=Studente")
-for row in cursor: print('row = %r' % (row,))
+cursor.execute("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='Studente'")
+for row in cursor: print('row = %r' % (row[3],))
 
 conn.close()
