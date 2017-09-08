@@ -23,6 +23,7 @@ def printTable(conn, name):
         separator += '-' * w + '--+'
 
     # Stampa dei dati formattati
+    print(name)
     print(separator)
     print(tavnit % tuple(columns))
     print(separator)

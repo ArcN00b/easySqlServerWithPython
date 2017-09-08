@@ -22,7 +22,7 @@ if choose == "1":
 
     # Ripeto finchè la scelta non è 8
     while choose != "8":
-        print("             MENU INSERIMENTO  ")
+        print("   MENU INSERIMENTO  ")
         print(30 * '-')
         print("1. Inserisci docente")
         print("2. Inserisci studente")
@@ -173,7 +173,7 @@ if choose == "1":
 
 # Menù inserimento
 if choose == "2":
-    print("             Visualizzazione  ")
+    print("   MENU VISUALIZZAZIONE  ")
     print(30 * '-')
     print("1. Visualizza docenti")
     print("2. Visualizza studenti")
