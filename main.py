@@ -50,5 +50,41 @@ if choose == "1":
         attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita, Dipartimento"
         myFunction.insertInto(conn, "Docente", attributi, valori)
 
+    # Inserimento nuovo studente
+    if choose == "2":
+
+        # Stampo gli studenti già presenti
+        myFunction.printTable(conn, "Studente")
+
+        # Richiedo i dati e li preparo per la query
+        campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita"]
+        valori = []
+        for n in campi:
+            print(n + " = ", end="")
+            temp = input()
+            valori.append(temp)
+
+        # Eseguo la query di inserimento
+        attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita,"
+        myFunction.insertInto(conn, "Studente", attributi, valori)
+
+    # inserimento nuovo esame
+    if choose == "3":
+
+        # Stampo gli studenti già presenti
+        myFunction.printTable(conn, "Studente")
+
+        # Richiedo i dati e li preparo per la query
+        campi = ["Voto", "Lode", "Data", "Matricola"]
+        valori = []
+        for n in campi:
+            print(n + " = ", end="")
+            temp = input()
+            valori.append(temp)
+
+        # Eseguo la query di inserimento
+        attributi = "Voto, Lode, Data, Matricola_Stud"
+        myFunction.insertInto(conn, "Esame", attributi, valori)
+
 # Chiusura della connessione
 conn.close()
