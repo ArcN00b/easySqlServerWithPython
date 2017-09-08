@@ -17,7 +17,7 @@ print(30 * '-')
 choose = input()
 
 # Menù inserimento
-if choose == 1:
+if choose == "1":
     print("             MENU INSERIMENTO  ")
     print(30 * '-')
     print("1. Inserisci docente")
@@ -33,17 +33,19 @@ if choose == 1:
     choose = input()
 
     # Inserimento nuovo docente
-    if choose == 1:
+    if choose == "1":
 
         # Stampo i docenti già presenti
         myFunction.printTable(conn, "Docente")
 
         # Richiedo i dati e li preparo per la query
         campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
-        for n in campi:
+        ins = ["Enrico", "Neri", "Largo delle Libertà 12, Rovigo (RO)", "44150", "0452151617", "19680407", "Matematica"]
+        valori = ""
+        for n in ins:
             print(n + " = ", end="")
-            temp = input()
-            valori = "'" + temp +"', "
+            #temp = input()
+            valori = valori + "'" + n + "', "
         valori = valori[:-2]
 
         # Eseguo la query di inserimento

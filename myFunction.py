@@ -36,9 +36,11 @@ def printTable(conn, name):
 def insertInto(conn, name, attributes, values):
     cursor = conn.cursor()
     try:
+        "Nome, Cognome, Indirizzo, Cap, Tel, Data di nascita, Dipartimento"
         cursor.execute("INSERT INTO "+ name +" (" + attributes +") "
                    "VALUES (" + values +")")
         conn.commit()
         print("Operazione completata")
     except:
         conn.rollback()
+        print("Errore durante l'operazione")
