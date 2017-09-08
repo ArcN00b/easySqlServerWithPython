@@ -194,7 +194,7 @@ if choose == "1":
         if choose == "8":
             os.system("cls")
 
-# Menù inserimento
+# Menù Visualizzazione
 if choose == "2":
 
     # Ripeto finchè la scelta non è 9
@@ -240,6 +240,7 @@ if choose == "2":
         if choose == "9":
             os.system("cls")
 
+# Menù Cancellazione
 if choose == "3":
 
     # Ripeto finchè la scelta non è 9
@@ -297,6 +298,7 @@ if choose == "3":
         if choose == "8":
             os.system("cls")
 
+# Menù Modifica
 if choose == "4":
     print("   MENU MODIFICA ")
     print(30 * '-')
