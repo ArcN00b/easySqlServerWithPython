@@ -13,6 +13,7 @@ print(30 * '-')
 print("1. Inserimento")
 print("2. Visualizzazione")
 print("3. Cancellazione")
+print("4. Modifica")
 print(30 * '-')
 
 # Input della scelta
@@ -49,6 +50,9 @@ if choose == "1":
             for n in campi:
                 print(n + " = ", end="")
                 temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
                 valori.append(temp)
 
             # Eseguo la query di inserimento
@@ -67,6 +71,9 @@ if choose == "1":
             for n in campi:
                 print(n + " = ", end="")
                 temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
                 valori.append(temp)
 
             # Eseguo la query di inserimento
@@ -86,6 +93,9 @@ if choose == "1":
             for n in campi:
                 print(n + " = ", end="")
                 temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
                 valori.append(temp)
 
             # Eseguo la query di inserimento
@@ -104,6 +114,9 @@ if choose == "1":
             for n in campi:
                 print(n + " = ", end="")
                 temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
                 valori.append(temp)
 
             # Eseguo la query di inserimento
@@ -122,6 +135,9 @@ if choose == "1":
             for n in campi:
                 print(n + " = ", end="")
                 temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
                 valori.append(temp)
 
             # Eseguo la query di inserimento
@@ -143,6 +159,9 @@ if choose == "1":
             for n in campi:
                 print(n + " = ", end="")
                 temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
                 valori.append(temp)
 
             # Eseguo la query di inserimento
@@ -163,6 +182,9 @@ if choose == "1":
             for n in campi:
                 print(n + " = ", end="")
                 temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
                 valori.append(temp)
 
             # Eseguo la query di inserimento
@@ -219,15 +241,72 @@ if choose == "2":
             os.system("cls")
 
 if choose == "3":
-    print("   MENU CANCELLAZIONE  ")
+
+    # Ripeto finchè la scelta non è 9
+    while choose != "8":
+        print("   MENU CANCELLAZIONE  ")
+        print(30 * '-')
+        print("1. Cancella docente")
+        print("2. Cancella studente")
+        print("3. Cancella un esame svolto")
+        print("4. Cancella un tipo di esercitazione")
+        print("5. Cancella un programma d'esame")
+        print("6. Cancella un gruppo di esercitazioni")
+        print("7. Cancella una partecipazione ai gruppi")
+        print("8. Torna al menu precedente")
+
+        # Input della scelta
+        choose = input()
+
+        # Cancellazione scelta
+        if choose == "1":
+            myFunction.printTable(conn, "Docente")
+            print("Selezionare la matricola da rimuovere ", end="")
+            matricola = input()
+            myFunction.deleteFrom(conn,"Docente","Matricola", matricola)
+        if choose == "2":
+            myFunction.printTable(conn, "Studente")
+            print("Selezionare la matricola da rimuovere ", end="")
+            matricola = input()
+            myFunction.deleteFrom(conn,"Studente","Matricola", matricola)
+        if choose == "3":
+            myFunction.printTable(conn, "Esame")
+            print("Selezionare l'id da rimuovere ", end="")
+            id = input()
+            myFunction.deleteFrom(conn,"Esame","ID", id)
+        if choose == "4":
+            myFunction.printTable(conn, "Tipo")
+            print("Selezionare l'id da rimuovere ", end="")
+            id = input()
+            myFunction.deleteFrom(conn,"Tipo","ID", id)
+        if choose == "5":
+            myFunction.printTable(conn, "Programma")
+            print("Selezionare l'id da rimuovere ", end="")
+            id = input()
+            myFunction.deleteFrom(conn,"Programma","ID", id)
+        if choose == "6":
+            myFunction.printTable(conn, "Gruppo")
+            print("Selezionare l'id da rimuovere ", end="")
+            id = input()
+            myFunction.deleteFrom(conn,"Gruppo","ID", id)
+        if choose == "7":
+            myFunction.printTable(conn, "Partecipa")
+            print("Selezionare l'id da rimuovere ", end="")
+            id = input()
+            myFunction.deleteFrom(conn,"Partecipa","ID", id)
+        if choose == "8":
+            os.system("cls")
+
+if choose == "4":
+    print("   MENU MODIFICA ")
     print(30 * '-')
-    print("1. Cancella docente")
-    print("2. Cancella studente")
-    print("3. Cancella un esame svolto")
-    print("4. Cancella un tipo di esercitazione")
-    print("5. Cancella un programma d'esame")
-    print("6. Cancella un gruppo di esercitazioni")
-    print("7. Cancella una partecipazione ai gruppi")
+    print("1. Modifica docente")
+    print("2. Modifica studente")
+    print("3. Modifica un esame svolto")
+    print("4. Modifica un tipo di esercitazione")
+    print("5. Modifica un programma d'esame")
+    print("6. Modifica un gruppo di esercitazioni")
+    print("7. Modifica una partecipazione ai gruppi")
     print("8. Torna al menu precedente")
 
     # Input della scelta
@@ -235,10 +314,32 @@ if choose == "3":
 
     # Cancellazione scelta
     if choose == "1":
+
+        # Chiedo la matricola in input
         myFunction.printTable(conn, "Docente")
-        print("Selezionare la matricola da rimuovere ", end="")
+        print("Selezionare la matricola da modificare ", end="")
         matricola = input()
-        myFunction.deleteFrom(conn,"Docente","Matricola", matricola)
+
+        # Controllo che la matricola inserita esista
+        if myFunction.check(conn, "Docente", "Matricola", matricola):
+
+            # Richiedo tutti gli altri campi
+            campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
+                valori.append(temp)
+
+            # Eseguo la funzione di aggiornamento
+            myFunction.update(conn, "Docente", campi, valori, "Matricola = '" + matricola + "'")
+
+        # Se la matricola non esiste scrivo messaggio d'errore
+        else:
+            print("La matricola scelta non esiste")
     if choose == "2":
         myFunction.printTable(conn, "Studente")
         print("Selezionare la matricola da rimuovere ", end="")

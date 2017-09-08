@@ -1,3 +1,12 @@
+#Funzione che controlla se esiste il valore dell'attributo nella tabella name
+def check(conn, name, attribute, value):
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM " + name + " WHERE " + attribute + " = '" + value + "'")
+    if cursor.rowcount == 0:
+        return False
+    else:
+        return True
+
 #Funzione che stampa una tabella completa di struttura
 def printTable(conn, name):
 
@@ -32,7 +41,7 @@ def printTable(conn, name):
     print(separator)
     print("")
 
-
+# Funzione che inserisce i valori all'interno delle tuple utilizzando gli attributi
 def insertInto(conn, name, attributes, values):
     cursor = conn.cursor()
     try:
@@ -46,16 +55,31 @@ def insertInto(conn, name, attributes, values):
         conn.rollback()
         print(e)
 
+# Funzione che cancella le tuple utilizzando gli attributi
 def deleteFrom(conn, name, attribute, value):
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM " + name + " WHERE " + attribute + " = '" + value +"'")
-    if cursor.rowcount == 0:
+    if check(conn, name, attribute, value) == False:
         print(attribute + " inserito non esiste all'interno del database")
     else:
         try:
+            cursor = conn.cursor()
             cursor.execute("DELETE FROM " + name + " WHERE " + attribute + " = '" + value +"'")
             conn.commit()
             print("Operazione completata")
         except Exception as e:
             conn.rollback()
             print(e)
+
+def update(conn, name, attributes, values, condition):
+    cursor = conn.cursor()
+    try:
+        #"Trovo il numero esatto di ? da inserire nel campo values
+        query = "UPDATE " + name + " SET "
+        for num in range(0, len(attributes)):
+            query = query + attributes[num] + " = '" + values + "', "
+        query = query[:-2] + " WHERE " + condition
+        cursor.execute(query)
+        conn.commit()
+        print("Operazione completata")
+    except Exception as e:
+        conn.rollback()
+        print(e)
