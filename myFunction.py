@@ -12,7 +12,7 @@ def printTable(conn, name):
     separator = '+'
 
     for cd in cursor.description:
-        widths.append(max(cd[2], len(cd[0])))
+        widths.append(max(len(cd[0]), cd[4]))
         columns.append(cd[0])
 
     for w in widths:
@@ -23,7 +23,7 @@ def printTable(conn, name):
     print(tavnit % tuple(columns))
     print(separator)
     for row in results:
-        print(tavnit % row)
+        print(tavnit % tuple(row))
     print(separator)
 
 
