@@ -43,19 +43,19 @@ def insertInto(conn, name, attributes, values):
         conn.commit()
         print("Operazione completata")
     except Exception as e:
-
         conn.rollback()
         print(e)
 
 def deleteFrom(conn, name, attribute, value):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM " + name + " WHERE " + attribute + " = '" + value +"'")
-    print(cursor.rowcount)
-    try:
-        cursor.execute("DELETE FROM " + name + " WHERE " + attribute + " = '" + value +"'")
-        conn.commit()
-        print("Operazione completata")
-    except Exception as e:
-
-        conn.rollback()
-        print(e)
+    if cursor.rowcount == 0:
+        print(attribute + " inserito non esiste all'interno del database")
+    else:
+        try:
+            cursor.execute("DELETE FROM " + name + " WHERE " + attribute + " = '" + value +"'")
+            conn.commit()
+            print("Operazione completata")
+        except Exception as e:
+            conn.rollback()
+            print(e)
