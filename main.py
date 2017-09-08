@@ -342,35 +342,178 @@ if choose == "4":
         else:
             print("La matricola scelta non esiste")
     if choose == "2":
+
+        # Chiedo la matricola in input
         myFunction.printTable(conn, "Studente")
-        print("Selezionare la matricola da rimuovere ", end="")
+        print("Selezionare la matricola da modificare ", end="")
         matricola = input()
-        myFunction.deleteFrom(conn,"Studente","Matricola", matricola)
+
+        # Controllo che la matricola inserita esista
+        if myFunction.check(conn, "Studente", "Matricola", matricola):
+
+            # Richiedo tutti gli altri campi
+            campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
+                valori.append(temp)
+
+            # Eseguo la funzione di aggiornamento
+            attributi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita"]
+            myFunction.update(conn, "Studente", attributi, valori, "Matricola = '" + matricola + "'")
+
+        # Se la matricola non esiste scrivo messaggio d'errore
+        else:
+            print("La matricola scelta non esiste")
     if choose == "3":
+
+        # Chiedo l'id in input
         myFunction.printTable(conn, "Esame")
-        print("Selezionare l'id da rimuovere ", end="")
+        print("Selezionare l'id da modificare ", end="")
         id = input()
-        myFunction.deleteFrom(conn,"Esame","ID", id)
+
+        # Controllo che l'id inserito esista
+        if myFunction.check(conn, "Esame", "ID", id):
+
+            # Richiedo tutti gli altri campi
+            campi = ["Voto", "Lode", "Data", "Matricola"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
+                valori.append(temp)
+
+            # Eseguo la funzione di aggiornamento
+            attributi = ["Voto", "Lode", "Data", "Matricola_Stud"]
+            myFunction.update(conn, "Esame", attributi, valori, "ID = '" + id + "'")
+
+        # Se l'id non esiste scrivo messaggio d'errore
+        else:
+            print("L'id scelto non esiste")
     if choose == "4":
+
+        # Chiedo l'id in input
         myFunction.printTable(conn, "Tipo")
-        print("Selezionare l'id da rimuovere ", end="")
+        print("Selezionare l'id da modificare ", end="")
         id = input()
-        myFunction.deleteFrom(conn,"Tipo","ID", id)
+
+        # Controllo che l'id inserito esista
+        if myFunction.check(conn, "Tipo", "ID", id):
+
+            # Richiedo tutti gli altri campi
+            campi = ["Tipo", "Frontale"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
+                valori.append(temp)
+
+            # Eseguo la funzione di aggiornamento
+            attributi = ["Tipo", "Frontale"]
+            myFunction.update(conn, "Tipo", attributi, valori, "ID = '" + id + "'")
+
+        # Se l'id non esiste scrivo messaggio d'errore
+        else:
+            print("L'id scelto non esiste")
     if choose == "5":
+
+        # Chiedo l'id in input
         myFunction.printTable(conn, "Programma")
-        print("Selezionare l'id da rimuovere ", end="")
+        print("Selezionare l'id da modificare ", end="")
         id = input()
-        myFunction.deleteFrom(conn,"Programma","ID", id)
+
+        # Controllo che l'id inserito esista
+        if myFunction.check(conn, "Programma", "ID", id):
+
+            # Richiedo tutti gli altri campi
+            campi = ["Descrizione", "Bibliografia"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
+                valori.append(temp)
+
+            # Eseguo la funzione di aggiornamento
+            attributi = ["Descrizione", "Bibliografia"]
+            myFunction.update(conn, "Programma", attributi, valori, "ID = '" + id + "'")
+
+        # Se l'id non esiste scrivo messaggio d'errore
+        else:
+            print("L'id scelto non esiste")
     if choose == "6":
+
+        # Stampo i gruppi, i docenti, i tipi di esercitazione e i programmi d'esame
+        myFunction.printTable(conn, "Docente")
+        myFunction.printTable(conn, "Tipo")
+        myFunction.printTable(conn, "Programma")
         myFunction.printTable(conn, "Gruppo")
-        print("Selezionare l'id da rimuovere ", end="")
+        print("Selezionare l'id del gruppo da modificare ", end="")
         id = input()
-        myFunction.deleteFrom(conn,"Gruppo","ID", id)
+
+        # Controllo che l'id inserito esista
+        if myFunction.check(conn, "Gruppo", "ID", id):
+
+            # Richiedo tutti gli altri campi
+            campi = ["Orario", "Anno Accademico", "Tipo Esercitazione", "Matricola Docente", "Programma"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
+                valori.append(temp)
+
+            # Eseguo la funzione di aggiornamento
+            attributi = ["Orario", "Anno_Accademico", "ID_Tipo", "Matricola_Doc", "ID_Pro"]
+            myFunction.update(conn, "Gruppo", attributi, valori, "ID = '" + id + "'")
+
+        # Se l'id non esiste scrivo messaggio d'errore
+        else:
+            print("L'id scelto non esiste")
     if choose == "7":
+
+        # Stampo le partecipazioni, gli studenti e i gruppi
+        myFunction.printTable(conn, "Studente")
+        myFunction.printTable(conn, "Gruppo")
         myFunction.printTable(conn, "Partecipa")
-        print("Selezionare l'id da rimuovere ", end="")
+        print("Selezionare l'id della partecipazione da modificare ", end="")
         id = input()
-        myFunction.deleteFrom(conn,"Partecipa","ID", id)
+
+        # Controllo che l'id inserito esista
+        if myFunction.check(conn, "Partecipa", "ID", id):
+
+            # Richiedo tutti gli altri campi
+            campi = ["Matricola", "Gruppo"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                while len(temp) == 0:
+                    print(n + " = ", end="")
+                    temp = input()
+                valori.append(temp)
+
+            # Eseguo la funzione di aggiornamento
+            attributi = ["Matricola_Stud", "ID_Gruppo"]
+            myFunction.update(conn, "Partecipa", attributi, valori, "ID = '" + id + "'")
+
+        # Se l'id non esiste scrivo messaggio d'errore
+        else:
+            print("L'id scelto non esiste")
     if choose == "8":
         os.system("cls")
 
