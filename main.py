@@ -235,9 +235,41 @@ if choose == "3":
     # Cancellazione scelta
     if choose == "1":
         myFunction.printTable(conn, "Docente")
-        print("Selezionare l'ID da rimuovere ", end="")
+        print("Selezionare la matricola da rimuovere ", end="")
         matricola = input()
         myFunction.deleteFrom(conn,"Docente","Matricola", matricola)
+    if choose == "2":
+        myFunction.printTable(conn, "Studente")
+        print("Selezionare la matricola da rimuovere ", end="")
+        matricola = input()
+        myFunction.deleteFrom(conn,"Studente","Matricola", matricola)
+    if choose == "3":
+        myFunction.printTable(conn, "Esame")
+        print("Selezionare l'id da rimuovere ", end="")
+        id = input()
+        myFunction.deleteFrom(conn,"Esame","ID", id)
+    if choose == "4":
+        myFunction.printTable(conn, "Tipo")
+        print("Selezionare l'id da rimuovere ", end="")
+        id = input()
+        myFunction.deleteFrom(conn,"Tipo","ID", id)
+    if choose == "5":
+        myFunction.printTable(conn, "Programma")
+        print("Selezionare l'id da rimuovere ", end="")
+        id = input()
+        myFunction.deleteFrom(conn,"Programma","ID", id)
+    if choose == "6":
+        myFunction.printTable(conn, "Gruppo")
+        print("Selezionare l'id da rimuovere ", end="")
+        id = input()
+        myFunction.deleteFrom(conn,"Gruppo","ID", id)
+    if choose == "7":
+        myFunction.printTable(conn, "Partecipa")
+        print("Selezionare l'id da rimuovere ", end="")
+        id = input()
+        myFunction.deleteFrom(conn,"Partecipa","ID", id)
+    if choose == "9":
+        os.system("cls")
 
 # Chiusura della connessione
 conn.close()
