@@ -19,154 +19,157 @@ choose = input()
 
 # Menù inserimento
 if choose == "1":
-    print("             MENU INSERIMENTO  ")
-    print(30 * '-')
-    print("1. Inserisci docente")
-    print("2. Inserisci studente")
-    print("3. Inserisci risultato esame")
-    print("4. Inserisci tipo esercitazione")
-    print("5. Inserisci programma d'esame")
-    print("6. Inserisci gruppo di esercitazioni")
-    print("7. Inserisci partecipazione ad un gruppo")
-    print("8. Torna al menu precedente")
 
-    # Input della scelta
-    choose = input()
+    # Ripeto finchè la scelta non è 8
+    while choose != 8:
+        print("             MENU INSERIMENTO  ")
+        print(30 * '-')
+        print("1. Inserisci docente")
+        print("2. Inserisci studente")
+        print("3. Inserisci risultato esame")
+        print("4. Inserisci tipo esercitazione")
+        print("5. Inserisci programma d'esame")
+        print("6. Inserisci gruppo di esercitazioni")
+        print("7. Inserisci partecipazione ad un gruppo")
+        print("8. Torna al menu precedente")
 
-    # Inserimento nuovo docente
-    if choose == "1":
+        # Input della scelta
+        choose = input()
 
-        # Stampo i docenti già presenti
-        myFunction.printTable(conn, "Docente")
+        # Inserimento nuovo docente
+        if choose == "1":
 
-        # Richiedo i dati e li preparo per la query
-        campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
-        valori = []
-        for n in campi:
-            print(n + " = ", end="")
-            temp = input()
-            valori.append(temp)
+            # Stampo i docenti già presenti
+            myFunction.printTable(conn, "Docente")
 
-        # Eseguo la query di inserimento
-        attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita, Dipartimento"
-        myFunction.insertInto(conn, "Docente", attributi, valori)
+            # Richiedo i dati e li preparo per la query
+            campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                valori.append(temp)
 
-    # Inserimento nuovo studente
-    if choose == "2":
+            # Eseguo la query di inserimento
+            attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita, Dipartimento"
+            myFunction.insertInto(conn, "Docente", attributi, valori)
 
-        # Stampo gli studenti già presenti
-        myFunction.printTable(conn, "Studente")
+        # Inserimento nuovo studente
+        if choose == "2":
 
-        # Richiedo i dati e li preparo per la query
-        campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita"]
-        valori = []
-        for n in campi:
-            print(n + " = ", end="")
-            temp = input()
-            valori.append(temp)
+            # Stampo gli studenti già presenti
+            myFunction.printTable(conn, "Studente")
 
-        # Eseguo la query di inserimento
-        attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita"
-        myFunction.insertInto(conn, "Studente", attributi, valori)
+            # Richiedo i dati e li preparo per la query
+            campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                valori.append(temp)
 
-    #Inserimento nuovo esame
-    #TODO aggiunta di collegamento tra esame e materia
-    if choose == "3":
+            # Eseguo la query di inserimento
+            attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita"
+            myFunction.insertInto(conn, "Studente", attributi, valori)
 
-        # Stampo gli studenti già presenti
-        myFunction.printTable(conn, "Studente")
+        #Inserimento nuovo esame
+        #TODO aggiunta di collegamento tra esame e materia
+        if choose == "3":
 
-        # Richiedo i dati e li preparo per la query
-        campi = ["Voto", "Lode", "Data", "Matricola"]
-        valori = []
-        for n in campi:
-            print(n + " = ", end="")
-            temp = input()
-            valori.append(temp)
+            # Stampo gli studenti già presenti
+            myFunction.printTable(conn, "Studente")
 
-        # Eseguo la query di inserimento
-        attributi = "Voto, Lode, Data, Matricola_Stud"
-        myFunction.insertInto(conn, "Esame", attributi, valori)
+            # Richiedo i dati e li preparo per la query
+            campi = ["Voto", "Lode", "Data", "Matricola"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                valori.append(temp)
 
-    # Inserimento nuovo tipo di esercitazione
-    if choose == "4":
+            # Eseguo la query di inserimento
+            attributi = "Voto, Lode, Data, Matricola_Stud"
+            myFunction.insertInto(conn, "Esame", attributi, valori)
 
-        # Stampo i tipi già presenti
-        myFunction.printTable(conn, "Tipo")
+        # Inserimento nuovo tipo di esercitazione
+        if choose == "4":
 
-        # Richiedo i dati e li preparo per la query
-        campi = ["Tipo", "Frontale"]
-        valori = []
-        for n in campi:
-            print(n + " = ", end="")
-            temp = input()
-            valori.append(temp)
+            # Stampo i tipi già presenti
+            myFunction.printTable(conn, "Tipo")
 
-        # Eseguo la query di inserimento
-        attributi = "Tipo, Frontale"
-        myFunction.insertInto(conn, "Tipo", attributi, valori)
+            # Richiedo i dati e li preparo per la query
+            campi = ["Tipo", "Frontale"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                valori.append(temp)
 
-    # Inserimento nuovo programma d'esame
-    if choose == "5":
+            # Eseguo la query di inserimento
+            attributi = "Tipo, Frontale"
+            myFunction.insertInto(conn, "Tipo", attributi, valori)
 
-        # Stampo i programmi
-        myFunction.printTable(conn, "Programma")
+        # Inserimento nuovo programma d'esame
+        if choose == "5":
 
-        # Richiedo i dati e li preparo per la query
-        campi = ["Descrizione", "Bibliografia"]
-        valori = []
-        for n in campi:
-            print(n + " = ", end="")
-            temp = input()
-            valori.append(temp)
+            # Stampo i programmi
+            myFunction.printTable(conn, "Programma")
 
-        # Eseguo la query di inserimento
-        attributi = "Descrizione, Bibliografia"
-        myFunction.insertInto(conn, "Programma", attributi, valori)
+            # Richiedo i dati e li preparo per la query
+            campi = ["Descrizione", "Bibliografia"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                valori.append(temp)
 
-    # Inserimento nuovo gruppo di esercitazioni
-    if choose == "6":
+            # Eseguo la query di inserimento
+            attributi = "Descrizione, Bibliografia"
+            myFunction.insertInto(conn, "Programma", attributi, valori)
 
-        # Stampo i gruppi, i docenti, i tipi di esercitazione e i programmi d'esame
-        myFunction.printTable(conn, "Gruppo")
-        myFunction.printTable(conn, "Docente")
-        myFunction.printTable(conn, "Tipo")
-        myFunction.printTable(conn, "Programma")
+        # Inserimento nuovo gruppo di esercitazioni
+        if choose == "6":
 
-        # Richiedo i dati e li preparo per la query
-        campi = ["Orario", "Anno Accademico", "Tipo Esercitazione", "Matricola Docente", "Programma"]
-        valori = []
-        for n in campi:
-            print(n + " = ", end="")
-            temp = input()
-            valori.append(temp)
+            # Stampo i gruppi, i docenti, i tipi di esercitazione e i programmi d'esame
+            myFunction.printTable(conn, "Gruppo")
+            myFunction.printTable(conn, "Docente")
+            myFunction.printTable(conn, "Tipo")
+            myFunction.printTable(conn, "Programma")
 
-        # Eseguo la query di inserimento
-        attributi = "Orario, Anno_Accademico, ID_Tipo, Matricola_Doc, ID_Pro"
-        myFunction.insertInto(conn, "Gruppo", attributi, valori)
+            # Richiedo i dati e li preparo per la query
+            campi = ["Orario", "Anno Accademico", "Tipo Esercitazione", "Matricola Docente", "Programma"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                valori.append(temp)
 
-    # Inserimento nuova partecipazione
-    if choose == "7":
+            # Eseguo la query di inserimento
+            attributi = "Orario, Anno_Accademico, ID_Tipo, Matricola_Doc, ID_Pro"
+            myFunction.insertInto(conn, "Gruppo", attributi, valori)
 
-        # Stampo le partecipazioni, gli studenti e i gruppi
-        myFunction.printTable(conn, "Partecipa")
-        myFunction.printTable(conn, "Studente")
-        myFunction.printTable(conn, "Gruppo")
+        # Inserimento nuova partecipazione
+        if choose == "7":
 
-        # Richiedo i dati e li preparo per la query
-        campi = ["Matricola", "Gruppo"]
-        valori = []
-        for n in campi:
-            print(n + " = ", end="")
-            temp = input()
-            valori.append(temp)
+            # Stampo le partecipazioni, gli studenti e i gruppi
+            myFunction.printTable(conn, "Partecipa")
+            myFunction.printTable(conn, "Studente")
+            myFunction.printTable(conn, "Gruppo")
 
-        # Eseguo la query di inserimento
-        attributi = "Matricola_Stud, ID_Gruppo"
-        myFunction.insertInto(conn, "Partecipa", attributi, valori)
+            # Richiedo i dati e li preparo per la query
+            campi = ["Matricola", "Gruppo"]
+            valori = []
+            for n in campi:
+                print(n + " = ", end="")
+                temp = input()
+                valori.append(temp)
 
-    if choose == "8":
-        os.system("cls")
+            # Eseguo la query di inserimento
+            attributi = "Matricola_Stud, ID_Gruppo"
+            myFunction.insertInto(conn, "Partecipa", attributi, valori)
+
+        if choose == "8":
+            os.system("cls")
 
 # Menù inserimento
 if choose == "2":
@@ -174,12 +177,32 @@ if choose == "2":
     print(30 * '-')
     print("1. Visualizza docenti")
     print("2. Visualizza studenti")
-    print("3. Visualizza risultati esame")
+    print("3. Visualizza gli esami svolti")
     print("4. Visualizza i tipi di esercitazione")
     print("5. Visualizza i programmi d'esame")
     print("6. Visualizza i gruppi di esercitazioni")
     print("7. Visualizza la partecipazione ai gruppi")
     print("8. Torna al menu precedente")
+
+    # Input della scelta
+    choose = input()
+
+    # Inserimento nuovo docente
+    if choose == "1":
+        myFunction.printTable(conn, "Docente")
+    if choose == "2":
+        myFunction.printTable(conn, "Studente")
+    if choose == "3":
+        myFunction.printTable(conn, "Esame")
+    if choose == "4":
+        myFunction.printTable(conn, "Tipo")
+    if choose == "5":
+        myFunction.printTable(conn, "Programma")
+    if choose == "6":
+        myFunction.printTable(conn, "Gruppo")
+    if choose == "7":
+        myFunction.printTable(conn, "Partecipa")
+
 
 # Chiusura della connessione
 conn.close()
