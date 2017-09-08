@@ -45,7 +45,7 @@ def printTable(conn, name):
 def insertInto(conn, name, attributes, values):
     cursor = conn.cursor()
     try:
-        #"Trovo il numero esatto di ? da inserire nel campo values
+        # Trovo il numero esatto di ? da inserire nel campo values
         questions = "?, " * len(values)
         questions = questions[:-2]
         cursor.execute("INSERT INTO " + name + " (" + attributes + ") VALUES (" + questions + ")", values)
@@ -72,7 +72,7 @@ def deleteFrom(conn, name, attribute, value):
 def update(conn, name, attributes, values, condition):
     cursor = conn.cursor()
     try:
-        #"Trovo il numero esatto di ? da inserire nel campo values
+        # Creo la stringa da usare come query
         query = "UPDATE " + name + " SET "
         for num in range(0, len(attributes)):
             query = query + attributes[num] + " = '" + values[num] + "', "
