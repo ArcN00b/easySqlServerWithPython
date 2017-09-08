@@ -29,13 +29,14 @@ def printTable(conn, name):
     for row in results:
         print(tavnit % tuple(row))
     print(separator)
+    print("")
 
 
 #"VALUES ('Maria' , 'Bianchi', 'Via L. Ariosto 9, Ferrara (FE)', '44121', '3483483483', '19921123')")
-def insertIntoStudenti(conn, values):
+def insertInto(conn, name, attributes, values):
     cursor = conn.cursor()
     try:
-        cursor.execute("INSERT INTO Studente (Nome, Cognome, Indirizzo, Cap, Tel, Nascita) "
+        cursor.execute("INSERT INTO "+ name +" (" + attributes +") "
                    "VALUES (" + values +")")
         conn.commit()
         print("Operazione completata")
