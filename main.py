@@ -182,7 +182,8 @@ if choose == "2":
     print("5. Visualizza i programmi d'esame")
     print("6. Visualizza i gruppi di esercitazioni")
     print("7. Visualizza la partecipazione ai gruppi")
-    print("8. Torna al menu precedente")
+    print("8. Visualizza intero database")
+    print("9. Torna al menu precedente")
 
     # Input della scelta
     choose = input()
@@ -202,7 +203,17 @@ if choose == "2":
         myFunction.printTable(conn, "Gruppo")
     if choose == "7":
         myFunction.printTable(conn, "Partecipa")
-
+    if choose == "8":
+        myFunction.printTable(conn, "Docente")
+        myFunction.printTable(conn, "Studente")
+        myFunction.printTable(conn, "Esame")
+        myFunction.printTable(conn, "Tipo")
+        myFunction.printTable(conn, "Programma")
+        myFunction.printTable(conn, "Gruppo")
+        myFunction.printTable(conn, "Partecipa")
+    if choose == "9":
+        os.system("cls")
+    
 
 # Chiusura della connessione
 conn.close()
