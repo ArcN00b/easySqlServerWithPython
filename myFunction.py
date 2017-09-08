@@ -32,15 +32,16 @@ def printTable(conn, name):
     print("")
 
 
-#"VALUES ('Maria' , 'Bianchi', 'Via L. Ariosto 9, Ferrara (FE)', '44121', '3483483483', '19921123')")
 def insertInto(conn, name, attributes, values):
     cursor = conn.cursor()
     try:
-        "Nome, Cognome, Indirizzo, Cap, Tel, Data di nascita, Dipartimento"
-        cursor.execute("INSERT INTO "+ name +" (" + attributes +") "
-                   "VALUES (" + values +")")
+        #"Trovo il numero esatto di ? da inserire nel campo values
+        questions = "?, " * len(values)
+        questions = questions[:-2]
+        cursor.execute("INSERT INTO " + name + " (" + attributes + ") VALUES (" + questions + ")", values)
         conn.commit()
         print("Operazione completata")
-    except:
+    except Exception as e:
+
         conn.rollback()
-        print("Errore durante l'operazione")
+        print(e)

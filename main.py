@@ -40,16 +40,14 @@ if choose == "1":
 
         # Richiedo i dati e li preparo per la query
         campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
-        ins = ["Enrico", "Neri", "Largo delle Libertà 12, Rovigo (RO)", "44150", "0452151617", "19680407", "Matematica"]
-        valori = ""
-        for n in ins:
+        valori = []
+        for n in campi:
             print(n + " = ", end="")
-            #temp = input()
-            valori = valori + "'" + n + "', "
-        valori = valori[:-2]
+            temp = input()
+            valori.append(temp)
 
         # Eseguo la query di inserimento
-        attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Data di nascita, Dipartimento"
+        attributi = "Nome, Cognome, Indirizzo, Cap, Tel, Nascita, Dipartimento"
         myFunction.insertInto(conn, "Docente", attributi, valori)
 
 # Chiusura della connessione
