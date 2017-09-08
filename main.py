@@ -3,7 +3,8 @@ import os
 import myFunction
 
 # Connessione al Database
-conn = pyodbc.connect("Driver={SQL Server Native Client 11.0};" "Server=localhost\SQLEXPRESS;" "Database=scuola;" "Trusted_Connection=yes;")
+conn = pyodbc.connect("Driver={SQL Server Native Client 11.0};" "Server=localhost\SQLEXPRESS;" 
+                      "Database=scuola;" "Trusted_Connection=yes;")
 
 # Stampa del menù
 print(30 * '-')
@@ -268,7 +269,7 @@ if choose == "3":
         print("Selezionare l'id da rimuovere ", end="")
         id = input()
         myFunction.deleteFrom(conn,"Partecipa","ID", id)
-    if choose == "9":
+    if choose == "8":
         os.system("cls")
 
 # Chiusura della connessione
