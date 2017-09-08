@@ -75,7 +75,7 @@ def update(conn, name, attributes, values, condition):
         #"Trovo il numero esatto di ? da inserire nel campo values
         query = "UPDATE " + name + " SET "
         for num in range(0, len(attributes)):
-            query = query + attributes[num] + " = '" + values + "', "
+            query = query + attributes[num] + " = '" + values[num] + "', "
         query = query[:-2] + " WHERE " + condition
         cursor.execute(query)
         conn.commit()
