@@ -46,3 +46,14 @@ def insertInto(conn, name, attributes, values):
 
         conn.rollback()
         print(e)
+
+def deleteFrom(conn, name, attribute, value):
+    cursor = conn.cursor()
+    try:
+        cursor.execute("DELETE FROM " + name + " WHERE " + attribute + " = '" + value +"'")
+        conn.commit()
+        print("Operazione completata")
+    except Exception as e:
+
+        conn.rollback()
+        print(e)

@@ -11,7 +11,7 @@ print("             MENU PRINCIPALE  ")
 print(30 * '-')
 print("1. Inserimento")
 print("2. Visualizzazione")
-print("3. Reboot the server")
+print("3. Cancellazione")
 print(30 * '-')
 
 # Input della scelta
@@ -173,47 +173,67 @@ if choose == "1":
 
 # Menù inserimento
 if choose == "2":
-    print("   MENU VISUALIZZAZIONE  ")
+
+    # Ripeto finchè la scelta non è 9
+    while choose != "9":
+        print("   MENU VISUALIZZAZIONE  ")
+        print(30 * '-')
+        print("1. Visualizza docenti")
+        print("2. Visualizza studenti")
+        print("3. Visualizza gli esami svolti")
+        print("4. Visualizza i tipi di esercitazione")
+        print("5. Visualizza i programmi d'esame")
+        print("6. Visualizza i gruppi di esercitazioni")
+        print("7. Visualizza la partecipazione ai gruppi")
+        print("8. Visualizza intero database")
+        print("9. Torna al menu precedente")
+
+        # Input della scelta
+        choose = input()
+
+        # Visualizzazione scelta
+        if choose == "1":
+            myFunction.printTable(conn, "Docente")
+        if choose == "2":
+            myFunction.printTable(conn, "Studente")
+        if choose == "3":
+            myFunction.printTable(conn, "Esame")
+        if choose == "4":
+            myFunction.printTable(conn, "Tipo")
+        if choose == "5":
+            myFunction.printTable(conn, "Programma")
+        if choose == "6":
+            myFunction.printTable(conn, "Gruppo")
+        if choose == "7":
+            myFunction.printTable(conn, "Partecipa")
+        if choose == "8":
+            myFunction.printTable(conn, "Docente")
+            myFunction.printTable(conn, "Studente")
+            myFunction.printTable(conn, "Esame")
+            myFunction.printTable(conn, "Tipo")
+            myFunction.printTable(conn, "Programma")
+            myFunction.printTable(conn, "Gruppo")
+            myFunction.printTable(conn, "Partecipa")
+        if choose == "9":
+            os.system("cls")
+
+if choose == "3":
+    print("   MENU CANCELLAZIONE  ")
     print(30 * '-')
-    print("1. Visualizza docenti")
-    print("2. Visualizza studenti")
-    print("3. Visualizza gli esami svolti")
-    print("4. Visualizza i tipi di esercitazione")
-    print("5. Visualizza i programmi d'esame")
-    print("6. Visualizza i gruppi di esercitazioni")
-    print("7. Visualizza la partecipazione ai gruppi")
-    print("8. Visualizza intero database")
-    print("9. Torna al menu precedente")
+    print("1. Cancella docenti")
+    print("2. Cancella studenti")
+    print("3. Cancella un esame svolto")
+    print("4. Cancella un tipo di esercitazione")
+    print("5. Cancella un programma d'esame")
+    print("6. Cancella un gruppo di esercitazioni")
+    print("7. Cancella una partecipazione ai gruppi")
+    print("8. Torna al menu precedente")
 
-    # Input della scelta
-    choose = input()
-
-    # Inserimento nuovo docente
-    if choose == "1":
-        myFunction.printTable(conn, "Docente")
-    if choose == "2":
-        myFunction.printTable(conn, "Studente")
-    if choose == "3":
-        myFunction.printTable(conn, "Esame")
-    if choose == "4":
-        myFunction.printTable(conn, "Tipo")
-    if choose == "5":
-        myFunction.printTable(conn, "Programma")
-    if choose == "6":
-        myFunction.printTable(conn, "Gruppo")
-    if choose == "7":
-        myFunction.printTable(conn, "Partecipa")
-    if choose == "8":
-        myFunction.printTable(conn, "Docente")
-        myFunction.printTable(conn, "Studente")
-        myFunction.printTable(conn, "Esame")
-        myFunction.printTable(conn, "Tipo")
-        myFunction.printTable(conn, "Programma")
-        myFunction.printTable(conn, "Gruppo")
-        myFunction.printTable(conn, "Partecipa")
-    if choose == "9":
-        os.system("cls")
-    
+    # Cancellazione scelta
+    myFunction.printTable(conn, "Docente")
+    print("Selezionare l'ID da rimuovere ", end="")
+    matricola = input()
+    myFunction.deleteFrom(conn,"Docente","Matricola", matricola)
 
 # Chiusura della connessione
 conn.close()
