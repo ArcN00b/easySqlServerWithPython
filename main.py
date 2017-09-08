@@ -335,7 +335,7 @@ if choose == "4":
                 valori.append(temp)
 
             # Eseguo la funzione di aggiornamento
-            campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita", "Dipartimento"]
+            attributi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita", "Dipartimento"]
             myFunction.update(conn, "Docente", attributi, valori, "Matricola = '" + matricola + "'")
 
         # Se la matricola non esiste scrivo messaggio d'errore
