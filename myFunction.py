@@ -4,7 +4,6 @@ def printTable(conn, name):
     # Connessione al database per ottenere l'informazione sulla tabella
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM " + name)
-    conn.commit()
     results = cursor.fetchall()
 
     widths = []
