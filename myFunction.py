@@ -50,7 +50,7 @@ def insertInto(conn, name, attributes, values):
 def deleteFrom(conn, name, attribute, value):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM " + name + " WHERE " + attribute + " = '" + value +"'")
-    print(len(cursor))
+    print(cursor.rowcount)
     try:
         cursor.execute("DELETE FROM " + name + " WHERE " + attribute + " = '" + value +"'")
         conn.commit()
