@@ -3,23 +3,38 @@ def printTable(conn, name):
 
     # Connessione al database per ottenere l'informazione sulla tabella
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='" + name + "'")
+    cursor.execute("SELECT * FROM " + name)
+    conn.commit()
+    results = cursor.fetchall()
 
-    # Stampa della cornice superiore
-    print("+", end="")
-    for row in cursor:
-        for num in range(0,len(row[3])+7):
-            print("-", end="")
-        print("+", end="")
+    widths = []
+    columns = []
+    tavnit = '|'
+    separator = '+'
 
-    # Stampa della struttura
-    print("|", end="")
-    for row in cursor:
-        print("    %s  |" % (row[3]), end="")
+    for cd in cursor.description:
+        widths.append(max(cd[2], len(cd[0])))
+        columns.append(cd[0])
 
-    # Stampa della cornice inferiore
-    print("+", end="")
-    for row in cursor:
-        for num in range(0,len(row[3])+7):
-            print("-", end="")
-        print("+", end="")
+    for w in widths:
+        tavnit += " %-" + "%ss |" % (w,)
+        separator += '-' * w + '--+'
+
+    print(separator)
+    print(tavnit % tuple(columns))
+    print(separator)
+    for row in results:
+        print(tavnit % row)
+    print(separator)
+
+
+#"VALUES ('Maria' , 'Bianchi', 'Via L. Ariosto 9, Ferrara (FE)', '44121', '3483483483', '19921123')")
+def insertIntoStudenti(conn, values):
+    cursor = conn.cursor()
+    try:
+        cursor.execute("INSERT INTO Studente (Nome, Cognome, Indirizzo, Cap, Tel, Nascita) "
+                   "VALUES (" + values +")")
+        conn.commit()
+        print("Operazione completata")
+    except:
+        conn.rollback()
