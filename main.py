@@ -530,7 +530,7 @@ if choose == "5":
     print(30 * '-')
     print("1. Visualizza gli esami sostenuti da uno studente")
     print("2. Visualizza la media degli esami sostenuti da uno studente in un gruppo")
-    print("3. Modifica un esame svolto")
+    print("3. Visualizza i gruppi gestiti da un docente")
     print("4. Modifica un tipo di esercitazione")
     print("5. Modifica un programma d'esame")
     print("6. Modifica un gruppo di esercitazioni")
