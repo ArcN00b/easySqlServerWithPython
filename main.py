@@ -533,9 +533,10 @@ if choose == "5":
     print("3. Visualizza i gruppi gestiti da un docente")
     print("4. Visualizza il tipo di esercitazione che effettua un gruppo")
     print("5. Visualizza il programma d'esame di un gruppo")
-    print("6. Modifica un gruppo di esercitazioni")
-    print("7. Modifica una partecipazione ai gruppi")
-    print("8. Torna al menu precedente")
+    print("6. Visualizza i partecipanti di un gruppo")
+    print("7. Visualizza i gruppi a cui partecipa uno studente")
+    print("8. Visualizza tutti gli esami che un docente firmato")
+    print("9. Torna al menu precedente")
 
     # Input della scelta
     choose = input()
@@ -585,7 +586,7 @@ if choose == "5":
 
         # Chiedo la matricola in input
         myFunction.printTable(conn, "SELECT * FROM Docente")
-        print("Selezionare la matricola dello studente ", end="")
+        print("Selezionare la matricola del docente ", end="")
         matricola = input()
 
         # Controllo che la matricola inserita esista ed eseguo la query
@@ -634,66 +635,60 @@ if choose == "5":
             print("L'ID scelto non esiste")
     if choose == "6":
 
-        # Stampo i gruppi, i docenti, i tipi di esercitazione e i programmi d'esame
-        myFunction.printTable(conn, "Docente")
-        myFunction.printTable(conn, "Tipo")
-        myFunction.printTable(conn, "Programma")
-        myFunction.printTable(conn, "Gruppo")
-        print("Selezionare l'id del gruppo da modificare ", end="")
+        # Chiedo la matricola in input
+        myFunction.printTable(conn, "SELECT * FROM Gruppo")
+        print("Selezionare il gruppo di esercitazioni ", end="")
         id = input()
 
-        # Controllo che l'id inserito esista
+        # Controllo che la matricola inserita esista ed eseguo la query
         if myFunction.check(conn, "Gruppo", "ID", id):
 
-            # Richiedo tutti gli altri campi
-            campi = ["Orario", "Anno Accademico", "Tipo Esercitazione", "Matricola Docente", "Programma"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
-                    print(n + " = ", end="")
-                    temp = input()
-                valori.append(temp)
+            query = "SELECT G.ID, G.Orario, G.Anno_Accademico, S.Matricola, S.Nome, S.Cognome FROM Gruppo G " \
+                    "INNER JOIN Partecipa P ON G.ID = P.ID_Gruppo " \
+                    "INNER JOIN Studente S ON S.Matricola = P.Matricola_Stud WHERE G.ID = '" + id + "'"
+            myFunction.printTable(conn, query)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Orario", "Anno_Accademico", "ID_Tipo", "Matricola_Doc", "ID_Pro"]
-            myFunction.update(conn, "Gruppo", attributi, valori, "ID = '" + id + "'")
-
-        # Se l'id non esiste scrivo messaggio d'errore
+        # Se la matricola non esiste scrivo messaggio d'errore
         else:
-            print("L'id scelto non esiste")
+            print("L'ID scelto non esiste")
     if choose == "7":
 
-        # Stampo le partecipazioni, gli studenti e i gruppi
-        myFunction.printTable(conn, "Studente")
-        myFunction.printTable(conn, "Gruppo")
-        myFunction.printTable(conn, "Partecipa")
-        print("Selezionare l'id della partecipazione da modificare ", end="")
-        id = input()
+        # Chiedo la matricola in input
+        myFunction.printTable(conn, "SELECT * FROM Studente")
+        print("Selezionare la matricola dello studente ", end="")
+        matricola = input()
 
-        # Controllo che l'id inserito esista
-        if myFunction.check(conn, "Partecipa", "ID", id):
+        # Controllo che la matricola inserita esista ed eseguo la query
+        if myFunction.check(conn, "Studente", "Matricola", matricola):
 
-            # Richiedo tutti gli altri campi
-            campi = ["Matricola", "Gruppo"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
-                    print(n + " = ", end="")
-                    temp = input()
-                valori.append(temp)
+            query = "SELECT S.Matricola, S.Nome, S.Cognome, G.ID, G.Orario, G.Anno_Accademico FROM Studente S " \
+                    "INNER JOIN Partecipa P ON S.Matricola = P.Matricola_Stud " \ 
+                    "INNER JOIN Gruppo G ON P.ID_Gruppo = G.ID WHERE S.Matricola = '" + matricola + "'"
+            myFunction.printTable(conn, query)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Matricola_Stud", "ID_Gruppo"]
-            myFunction.update(conn, "Partecipa", attributi, valori, "ID = '" + id + "'")
-
-        # Se l'id non esiste scrivo messaggio d'errore
+        # Se la matricola non esiste scrivo messaggio d'errore
         else:
-            print("L'id scelto non esiste")
+            print("La matricola scelta non esiste")
     if choose == "8":
+
+        # Chiedo la matricola in input
+        myFunction.printTable(conn, "SELECT * FROM Docente")
+        print("Selezionare la matricola del docente ", end="")
+        matricola = input()
+
+        # Controllo che la matricola inserita esista ed eseguo la query
+        if myFunction.check(conn, "Docente", "Matricola", matricola):
+
+            query = "SELECT D.Matricola, D.Nome, D.Cognome, S.Matricola, S.Nome, S.Cognome, E.Voto, E.Lode, E.Tipo, E.Data FROM Docente D " \
+                    "INNER JOIN Gruppo G ON D.Matricola = G.Matricola_Doc " \
+                    "INNER JOIN Esame E ON G.ID = E.ID_Gruppo " \
+                    "INNER JOIN Studente S ON S.Matricola = E.Matricola_Stud WHERE D.Matricola = '" + matricola + "'"
+            myFunction.printTable(conn, query)
+
+        # Se la matricola non esiste scrivo messaggio d'errore
+        else:
+            print("La matricola scelta non esiste")
+    if choose == "9":
         os.system("cls")
 
 # Chiusura della connessione
