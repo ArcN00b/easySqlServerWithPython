@@ -87,6 +87,7 @@ if choose == "1":
 
             # Stampo gli studenti già presenti
             myFunction.printTable(conn, "SELECT * FROM Studente")
+            myFunction.printTable(conn, "SELECT * FROM Partecipa")
             myFunction.printTable(conn, "SELECT * FROM Gruppo")
             myFunction.printTable(conn, "SELECT * FROM Esame")
 
