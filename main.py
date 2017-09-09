@@ -573,7 +573,7 @@ if choose == "5":
         if myFunction.check(conn, "Studente", "Matricola", matricola) and myFunction.check(conn, "Gruppo", "ID", id):
 
             query = "SELECT AVG(E.Voto) AS Media FROM Studente S " \
-                    "INNER JOIN Esame E ON S.Matricola = E.Matricola_Stud" \
+                    "INNER JOIN Esame E ON S.Matricola = E.Matricola_Stud " \
                     "INNER JOIN Gruppo G ON G.ID = E.ID_Gruppo"
             myFunction.printTable(conn, query)
 
