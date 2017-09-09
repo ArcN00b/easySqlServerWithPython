@@ -543,7 +543,7 @@ if choose == "5":
     if choose == "1":
 
         # Chiedo la matricola in input
-        myFunction.printTable(conn, "Studente")
+        myFunction.printTable(conn, "SELECT * FROM Studente")
         print("Selezionare la matricola dello studente ", end="")
         matricola = input()
 
