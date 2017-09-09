@@ -83,6 +83,7 @@ if choose == "1":
             myFunction.insertInto(conn, "Studente", attributi, valori)
 
         #Inserimento nuovo esame
+        #TODO fare si che non si possano inserire più di 3 esami per lo stesso gruppo e lo stesso studente
         if choose == "3":
 
             # Stampo gli studenti già presenti
