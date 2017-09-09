@@ -91,7 +91,7 @@ if choose == "1":
             myFunction.printTable(conn, "SELECT * FROM Esame")
 
             # Richiedo i dati e li preparo per la query
-            campi = ["Voto", "Lode", "Data", "Tipo", "Matricola", "Gruppo"]
+            campi = ["Voto", "Lode", "Tipo", "Data", "Matricola", "Gruppo"]
             valori = []
             for n in campi:
                 print(n + " = ", end="")
@@ -102,7 +102,7 @@ if choose == "1":
                 valori.append(temp)
 
             # Eseguo la query di inserimento
-            attributi = "Voto, Lode, Data, Tipo, Matricola_Stud, ID_Gruppo"
+            attributi = "Voto, Lode, Tipo, Data, Matricola_Stud, ID_Gruppo"
             myFunction.insertInto(conn, "Esame", attributi, valori)
 
         # Inserimento nuovo tipo di esercitazione
@@ -386,7 +386,7 @@ if choose == "4":
         if myFunction.check(conn, "Esame", "ID", id):
 
             # Richiedo tutti gli altri campi
-            campi = ["Voto", "Lode", "Data", "Tipo", "Matricola", "Gruppo"]
+            campi = ["Voto", "Lode", "Tipo", "Data", "Matricola", "Gruppo"]
             valori = []
             for n in campi:
                 print(n + " = ", end="")
@@ -397,7 +397,7 @@ if choose == "4":
                 valori.append(temp)
 
             # Eseguo la funzione di aggiornamento
-            attributi = ["Voto", "Lode", "Data", "Tipo", "Matricola_Stud", "ID_Gruppo"]
+            attributi = ["Voto", "Lode", "Tipo", "Data", "Matricola_Stud", "ID_Gruppo"]
             myFunction.update(conn, "Esame", attributi, valori, "ID = '" + id + "'")
 
         # Se l'id non esiste scrivo messaggio d'errore
