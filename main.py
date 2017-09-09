@@ -22,6 +22,7 @@ print(30 * '-')
 choose = input()
 
 # Menù inserimento
+#TODO Controllare l'inserimento di parametri references a nulla
 if choose == "1":
 
     # Ripeto finchè la scelta non è 8
@@ -304,6 +305,7 @@ if choose == "3":
             os.system("cls")
 
 # Menù Modifica
+#TODO Controllare l'inserimento di parametri references a nulla
 if choose == "4":
     #TODO Aggiungere ciclo while al termine delle modifiche
     print("   MENU MODIFICA ")
