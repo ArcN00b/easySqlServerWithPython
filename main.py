@@ -547,22 +547,12 @@ if choose == "5":
         print("Selezionare la matricola dello studente ", end="")
         matricola = input()
 
-        # Controllo che la matricola inserita esista
+        # Controllo che la matricola inserita esista ed eseguo la query
         if myFunction.check(conn, "Studente", "Matricola", matricola):
 
-            try:
-                cursor = conn.cursor()
-                query = "SELECT S.Matricola, S.Nome, S.Cognome, E.ID, E. FROM"
-                cursor.execute("SELECT  FROM " + name + " WHERE " + attribute + " = '" + value + "'")
-                conn.commit()
-                print("Operazione completata")
-            except Exception as e:
-                conn.rollback()
-                print(e)
-
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita", "Dipartimento"]
-            myFunction.update(conn, "Docente", attributi, valori, "Matricola = '" + matricola + "'")
+            query = "SELECT S.Matricola, S.Nome, S.Cognome, E.ID, E.Voto, E.Lode, E.Tipo FROM Studente S " \
+                    "INNER JOIN Esame E ON S.Matricola = E.Matricola_Stud"
+            myFunction.printTable(conn, query)
 
         # Se la matricola non esiste scrivo messaggio d'errore
         else:
