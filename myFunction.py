@@ -32,7 +32,8 @@ def printTable(conn, query):
         separator += '-' * w + '--+'
 
     # Stampa dei dati formattati
-    print(query.split(" ")[-1])
+    if(len(query.split(" ")[-1]) < 25):
+        print(query.split(" ")[-1])
     print(separator)
     print(tavnit % tuple(columns))
     print(separator)
