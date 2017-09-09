@@ -7,6 +7,7 @@ conn = pyodbc.connect("Driver={SQL Server Native Client 11.0};" "Server=localhos
                       "Database=scuola;" "Trusted_Connection=yes;")
 
 # Stampa del menù
+#TODO aggiungere ciclo while al termine delle modifiche
 print(30 * '-')
 print("             MENU PRINCIPALE  ")
 print(30 * '-')
@@ -43,7 +44,7 @@ if choose == "1":
         if choose == "1":
 
             # Stampo i docenti già presenti
-            myFunction.printTable(conn, "Docente")
+            myFunction.printTable(conn, "SELECT * FROM Docente")
 
             # Richiedo i dati e li preparo per la query
             campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
@@ -64,7 +65,7 @@ if choose == "1":
         if choose == "2":
 
             # Stampo gli studenti già presenti
-            myFunction.printTable(conn, "Studente")
+            myFunction.printTable(conn, "SELECT * FROM Studente")
 
             # Richiedo i dati e li preparo per la query
             campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita"]
@@ -85,9 +86,9 @@ if choose == "1":
         if choose == "3":
 
             # Stampo gli studenti già presenti
-            myFunction.printTable(conn, "Studente")
-            myFunction.printTable(conn, "Gruppo")
-            myFunction.printTable(conn, "Esame")
+            myFunction.printTable(conn, "SELECT * FROM Studente")
+            myFunction.printTable(conn, "SELECT * FROM Gruppo")
+            myFunction.printTable(conn, "SELECT * FROM Esame")
 
             # Richiedo i dati e li preparo per la query
             campi = ["Voto", "Lode", "Data", "Tipo", "Matricola", "Gruppo"]
@@ -108,7 +109,7 @@ if choose == "1":
         if choose == "4":
 
             # Stampo i tipi già presenti
-            myFunction.printTable(conn, "Tipo")
+            myFunction.printTable(conn, "SELECT * FROM Tipo")
 
             # Richiedo i dati e li preparo per la query
             campi = ["Tipo", "Frontale"]
@@ -129,7 +130,7 @@ if choose == "1":
         if choose == "5":
 
             # Stampo i programmi
-            myFunction.printTable(conn, "Programma")
+            myFunction.printTable(conn, "SELECT * FROM Programma")
 
             # Richiedo i dati e li preparo per la query
             campi = ["Descrizione", "Bibliografia"]
@@ -150,10 +151,10 @@ if choose == "1":
         if choose == "6":
 
             # Stampo i gruppi, i docenti, i tipi di esercitazione e i programmi d'esame
-            myFunction.printTable(conn, "Gruppo")
-            myFunction.printTable(conn, "Docente")
-            myFunction.printTable(conn, "Tipo")
-            myFunction.printTable(conn, "Programma")
+            myFunction.printTable(conn, "SELECT * FROM Gruppo")
+            myFunction.printTable(conn, "SELECT * FROM Docente")
+            myFunction.printTable(conn, "SELECT * FROM Tipo")
+            myFunction.printTable(conn, "SELECT * FROM Programma")
 
             # Richiedo i dati e li preparo per la query
             campi = ["Orario", "Anno Accademico", "Tipo Esercitazione", "Matricola Docente", "Programma"]
@@ -174,9 +175,9 @@ if choose == "1":
         if choose == "7":
 
             # Stampo le partecipazioni, gli studenti e i gruppi
-            myFunction.printTable(conn, "Partecipa")
-            myFunction.printTable(conn, "Studente")
-            myFunction.printTable(conn, "Gruppo")
+            myFunction.printTable(conn, "SELECT * FROM Partecipa")
+            myFunction.printTable(conn, "SELECT * FROM Studente")
+            myFunction.printTable(conn, "SELECT * FROM Gruppo")
 
             # Richiedo i dati e li preparo per la query
             campi = ["Matricola", "Gruppo"]
@@ -218,27 +219,27 @@ if choose == "2":
 
         # Visualizzazione scelta
         if choose == "1":
-            myFunction.printTable(conn, "Docente")
+            myFunction.printTable(conn, "SELECT * FROM Docente")
         if choose == "2":
-            myFunction.printTable(conn, "Studente")
+            myFunction.printTable(conn, "SELECT * FROM Studente")
         if choose == "3":
-            myFunction.printTable(conn, "Esame")
+            myFunction.printTable(conn, "SELECT * FROM Esame")
         if choose == "4":
-            myFunction.printTable(conn, "Tipo")
+            myFunction.printTable(conn, "SELECT * FROM Tipo")
         if choose == "5":
-            myFunction.printTable(conn, "Programma")
+            myFunction.printTable(conn, "SELECT * FROM Programma")
         if choose == "6":
-            myFunction.printTable(conn, "Gruppo")
+            myFunction.printTable(conn, "SELECT * FROM Gruppo")
         if choose == "7":
-            myFunction.printTable(conn, "Partecipa")
+            myFunction.printTable(conn, "SELECT * FROM Partecipa")
         if choose == "8":
-            myFunction.printTable(conn, "Docente")
-            myFunction.printTable(conn, "Studente")
-            myFunction.printTable(conn, "Esame")
-            myFunction.printTable(conn, "Tipo")
-            myFunction.printTable(conn, "Programma")
-            myFunction.printTable(conn, "Gruppo")
-            myFunction.printTable(conn, "Partecipa")
+            myFunction.printTable(conn, "SELECT * FROM Docente")
+            myFunction.printTable(conn, "SELECT * FROM Studente")
+            myFunction.printTable(conn, "SELECT * FROM Esame")
+            myFunction.printTable(conn, "SELECT * FROM Tipo")
+            myFunction.printTable(conn, "SELECT * FROM Programma")
+            myFunction.printTable(conn, "SELECT * FROM Gruppo")
+            myFunction.printTable(conn, "SELECT * FROM Partecipa")
         if choose == "9":
             os.system("cls")
 
@@ -263,37 +264,37 @@ if choose == "3":
 
         # Cancellazione scelta
         if choose == "1":
-            myFunction.printTable(conn, "Docente")
+            myFunction.printTable(conn, "SELECT * FROM Docente")
             print("Selezionare la matricola da rimuovere ", end="")
             matricola = input()
             myFunction.deleteFrom(conn,"Docente","Matricola", matricola)
         if choose == "2":
-            myFunction.printTable(conn, "Studente")
+            myFunction.printTable(conn, "SELECT * FROM Studente")
             print("Selezionare la matricola da rimuovere ", end="")
             matricola = input()
             myFunction.deleteFrom(conn,"Studente","Matricola", matricola)
         if choose == "3":
-            myFunction.printTable(conn, "Esame")
+            myFunction.printTable(conn, "SELECT * FROM Esame")
             print("Selezionare l'id da rimuovere ", end="")
             id = input()
             myFunction.deleteFrom(conn,"Esame","ID", id)
         if choose == "4":
-            myFunction.printTable(conn, "Tipo")
+            myFunction.printTable(conn, "SELECT * FROM Tipo")
             print("Selezionare l'id da rimuovere ", end="")
             id = input()
             myFunction.deleteFrom(conn,"Tipo","ID", id)
         if choose == "5":
-            myFunction.printTable(conn, "Programma")
+            myFunction.printTable(conn, "SELECT * FROM Programma")
             print("Selezionare l'id da rimuovere ", end="")
             id = input()
             myFunction.deleteFrom(conn,"Programma","ID", id)
         if choose == "6":
-            myFunction.printTable(conn, "Gruppo")
+            myFunction.printTable(conn, "SELECT * FROM Gruppo")
             print("Selezionare l'id da rimuovere ", end="")
             id = input()
             myFunction.deleteFrom(conn,"Gruppo","ID", id)
         if choose == "7":
-            myFunction.printTable(conn, "Partecipa")
+            myFunction.printTable(conn, "SELECT * FROM Partecipa")
             print("Selezionare l'id da rimuovere ", end="")
             id = input()
             myFunction.deleteFrom(conn,"Partecipa","ID", id)
@@ -302,6 +303,7 @@ if choose == "3":
 
 # Menù Modifica
 if choose == "4":
+    #TODO Aggiungere ciclo while al termine delle modifiche
     print("   MENU MODIFICA ")
     print(30 * '-')
     print("1. Modifica docente")
@@ -320,7 +322,7 @@ if choose == "4":
     if choose == "1":
 
         # Chiedo la matricola in input
-        myFunction.printTable(conn, "Docente")
+        myFunction.printTable(conn, "SELECT * FROM Docente")
         print("Selezionare la matricola da modificare ", end="")
         matricola = input()
 
@@ -348,7 +350,7 @@ if choose == "4":
     if choose == "2":
 
         # Chiedo la matricola in input
-        myFunction.printTable(conn, "Studente")
+        myFunction.printTable(conn, "SELECT * FROM Studente")
         print("Selezionare la matricola da modificare ", end="")
         matricola = input()
 
@@ -376,7 +378,7 @@ if choose == "4":
     if choose == "3":
 
         # Chiedo l'id in input
-        myFunction.printTable(conn, "Esame")
+        myFunction.printTable(conn, "SELECT * FROM Esame")
         print("Selezionare l'id da modificare ", end="")
         id = input()
 
@@ -404,7 +406,7 @@ if choose == "4":
     if choose == "4":
 
         # Chiedo l'id in input
-        myFunction.printTable(conn, "Tipo")
+        myFunction.printTable(conn, "SELECT * FROM Tipo")
         print("Selezionare l'id da modificare ", end="")
         id = input()
 
@@ -432,7 +434,7 @@ if choose == "4":
     if choose == "5":
 
         # Chiedo l'id in input
-        myFunction.printTable(conn, "Programma")
+        myFunction.printTable(conn, "SELECT * FROM Programma")
         print("Selezionare l'id da modificare ", end="")
         id = input()
 
@@ -460,10 +462,10 @@ if choose == "4":
     if choose == "6":
 
         # Stampo i gruppi, i docenti, i tipi di esercitazione e i programmi d'esame
-        myFunction.printTable(conn, "Docente")
-        myFunction.printTable(conn, "Tipo")
-        myFunction.printTable(conn, "Programma")
-        myFunction.printTable(conn, "Gruppo")
+        myFunction.printTable(conn, "SELECT * FROM Docente")
+        myFunction.printTable(conn, "SELECT * FROM Tipo")
+        myFunction.printTable(conn, "SELECT * FROM Programma")
+        myFunction.printTable(conn, "SELECT * FROM Gruppo")
         print("Selezionare l'id del gruppo da modificare ", end="")
         id = input()
 
@@ -491,9 +493,9 @@ if choose == "4":
     if choose == "7":
 
         # Stampo le partecipazioni, gli studenti e i gruppi
-        myFunction.printTable(conn, "Studente")
-        myFunction.printTable(conn, "Gruppo")
-        myFunction.printTable(conn, "Partecipa")
+        myFunction.printTable(conn, "SELECT * FROM Studente")
+        myFunction.printTable(conn, "SELECT * FROM Gruppo")
+        myFunction.printTable(conn, "SELECT * FROM Partecipa")
         print("Selezionare l'id della partecipazione da modificare ", end="")
         id = input()
 
@@ -523,7 +525,7 @@ if choose == "4":
 
 # Menù Ricerca
 if choose == "5":
-    print("   MENU MODIFICA ")
+    print("   MENU RICERCA ")
     print(30 * '-')
     print("1. Visualizza gli esami sostenuti da uno studente")
     print("2. Modifica studente")
@@ -541,23 +543,22 @@ if choose == "5":
     if choose == "1":
 
         # Chiedo la matricola in input
-        myFunction.printTable(conn, "Docente")
-        print("Selezionare la matricola da modificare ", end="")
+        myFunction.printTable(conn, "Studente")
+        print("Selezionare la matricola dello studente ", end="")
         matricola = input()
 
         # Controllo che la matricola inserita esista
-        if myFunction.check(conn, "Docente", "Matricola", matricola):
+        if myFunction.check(conn, "Studente", "Matricola", matricola):
 
-            # Richiedo tutti gli altri campi
-            campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
-                    print(n + " = ", end="")
-                    temp = input()
-                valori.append(temp)
+            try:
+                cursor = conn.cursor()
+                query = "SELECT S.Matricola, S.Nome, S.Cognome, E.ID, E. FROM"
+                cursor.execute("SELECT  FROM " + name + " WHERE " + attribute + " = '" + value + "'")
+                conn.commit()
+                print("Operazione completata")
+            except Exception as e:
+                conn.rollback()
+                print(e)
 
             # Eseguo la funzione di aggiornamento
             attributi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita", "Dipartimento"]

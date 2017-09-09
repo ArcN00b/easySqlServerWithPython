@@ -8,11 +8,11 @@ def check(conn, name, attribute, value):
         return True
 
 #Funzione che stampa una tabella completa di struttura
-def printTable(conn, name):
+def printTable(conn, query):
 
     # Connessione al database per ottenere l'informazione sulla tabella
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM " + name)
+    cursor.execute(query)
     results = cursor.fetchall()
 
     # Variabili locali utili per formattare correttamente la stampa
@@ -32,7 +32,7 @@ def printTable(conn, name):
         separator += '-' * w + '--+'
 
     # Stampa dei dati formattati
-    print(name)
+    print(query.split(" ")[-1])
     print(separator)
     print(tavnit % tuple(columns))
     print(separator)
