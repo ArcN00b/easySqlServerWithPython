@@ -249,7 +249,7 @@ if choose == "2":
 # Menù Cancellazione
 if choose == "3":
 
-    # Ripeto finchè la scelta non è 9
+    # Ripeto finchè la scelta non è 8
     while choose != "8":
         print("   MENU CANCELLAZIONE  ")
         print(30 * '-')
@@ -305,227 +305,241 @@ if choose == "3":
             os.system("cls")
 
 # Menù Modifica
-#TODO Controllare l'inserimento di parametri references a nulla
 if choose == "4":
-    #TODO Aggiungere ciclo while al termine delle modifiche
-    print("   MENU MODIFICA ")
-    print(30 * '-')
-    print("1. Modifica docente")
-    print("2. Modifica studente")
-    print("3. Modifica un esame svolto")
-    print("4. Modifica un tipo di esercitazione")
-    print("5. Modifica un programma d'esame")
-    print("6. Modifica un gruppo di esercitazioni")
-    print("7. Modifica una partecipazione ai gruppi")
-    print("8. Torna al menu precedente")
 
-    # Input della scelta
-    choose = input()
+    # Ripeto finchè la scelta non è 8
+    while choose != "8":
+        print("   MENU MODIFICA ")
+        print(30 * '-')
+        print("1. Modifica docente")
+        print("2. Modifica studente")
+        print("3. Modifica un esame svolto")
+        print("4. Modifica un tipo di esercitazione")
+        print("5. Modifica un programma d'esame")
+        print("6. Modifica un gruppo di esercitazioni")
+        print("7. Modifica una partecipazione ai gruppi")
+        print("8. Torna al menu precedente")
 
-    # Cancellazione scelta
-    if choose == "1":
+        # Input della scelta
+        choose = input()
 
-        # Chiedo la matricola in input
-        myFunction.printTable(conn, "SELECT * FROM Docente")
-        print("Selezionare la matricola da modificare ", end="")
-        matricola = input()
+        # Cancellazione scelta
+        if choose == "1":
 
-        # Controllo che la matricola inserita esista
-        if myFunction.check(conn, "Docente", "Matricola", matricola):
+            # Chiedo la matricola in input
+            myFunction.printTable(conn, "SELECT * FROM Docente")
+            print("Selezionare la matricola da modificare ", end="")
+            matricola = input()
 
-            # Richiedo tutti gli altri campi
-            campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
+            # Controllo che la matricola inserita esista
+            if myFunction.check(conn, "Docente", "Matricola", matricola):
+
+                # Richiedo tutti gli altri campi
+                campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita", "Dipartimento"]
+                valori = []
+                for n in campi:
                     print(n + " = ", end="")
                     temp = input()
-                valori.append(temp)
+                    while len(temp) == 0:
+                        print(n + " = ", end="")
+                        temp = input()
+                    valori.append(temp)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita", "Dipartimento"]
-            myFunction.update(conn, "Docente", attributi, valori, "Matricola = '" + matricola + "'")
+                # Eseguo la funzione di aggiornamento
+                attributi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita", "Dipartimento"]
+                myFunction.update(conn, "Docente", attributi, valori, "Matricola = '" + matricola + "'")
 
-        # Se la matricola non esiste scrivo messaggio d'errore
-        else:
-            print("La matricola scelta non esiste")
-    if choose == "2":
+            # Se la matricola non esiste scrivo messaggio d'errore
+            else:
+                print("La matricola scelta non esiste")
+        if choose == "2":
 
-        # Chiedo la matricola in input
-        myFunction.printTable(conn, "SELECT * FROM Studente")
-        print("Selezionare la matricola da modificare ", end="")
-        matricola = input()
+            # Chiedo la matricola in input
+            myFunction.printTable(conn, "SELECT * FROM Studente")
+            print("Selezionare la matricola da modificare ", end="")
+            matricola = input()
 
-        # Controllo che la matricola inserita esista
-        if myFunction.check(conn, "Studente", "Matricola", matricola):
+            # Controllo che la matricola inserita esista
+            if myFunction.check(conn, "Studente", "Matricola", matricola):
 
-            # Richiedo tutti gli altri campi
-            campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
+                # Richiedo tutti gli altri campi
+                campi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Data di nascita"]
+                valori = []
+                for n in campi:
                     print(n + " = ", end="")
                     temp = input()
-                valori.append(temp)
+                    while len(temp) == 0:
+                        print(n + " = ", end="")
+                        temp = input()
+                    valori.append(temp)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita"]
-            myFunction.update(conn, "Studente", attributi, valori, "Matricola = '" + matricola + "'")
+                # Eseguo la funzione di aggiornamento
+                attributi = ["Nome", "Cognome", "Indirizzo", "Cap", "Tel", "Nascita"]
+                myFunction.update(conn, "Studente", attributi, valori, "Matricola = '" + matricola + "'")
 
-        # Se la matricola non esiste scrivo messaggio d'errore
-        else:
-            print("La matricola scelta non esiste")
-    if choose == "3":
+            # Se la matricola non esiste scrivo messaggio d'errore
+            else:
+                print("La matricola scelta non esiste")
+        if choose == "3":
 
-        # Chiedo l'id in input
-        myFunction.printTable(conn, "SELECT * FROM Esame")
-        print("Selezionare l'id da modificare ", end="")
-        id = input()
+            # Chiedo l'id in input
+            myFunction.printTable(conn, "SELECT * FROM Esame")
+            print("Selezionare l'id da modificare ", end="")
+            id = input()
 
-        # Controllo che l'id inserito esista
-        if myFunction.check(conn, "Esame", "ID", id):
+            # Controllo che l'id inserito esista
+            if myFunction.check(conn, "Esame", "ID", id):
 
-            # Richiedo tutti gli altri campi
-            campi = ["Voto", "Lode", "Tipo", "Data", "Matricola", "Gruppo"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
+                # Richiedo tutti gli altri campi
+                campi = ["Voto", "Lode", "Tipo", "Data", "Matricola", "Gruppo"]
+                valori = []
+                for n in campi:
                     print(n + " = ", end="")
                     temp = input()
-                valori.append(temp)
+                    while len(temp) == 0:
+                        print(n + " = ", end="")
+                        temp = input()
+                    valori.append(temp)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Voto", "Lode", "Tipo", "Data", "Matricola_Stud", "ID_Gruppo"]
-            myFunction.update(conn, "Esame", attributi, valori, "ID = '" + id + "'")
+                # Eseguo la funzione di aggiornamento
+                attributi = ["Voto", "Lode", "Tipo", "Data", "Matricola_Stud", "ID_Gruppo"]
 
-        # Se l'id non esiste scrivo messaggio d'errore
-        else:
-            print("L'id scelto non esiste")
-    if choose == "4":
+                # Controllo che i dati inseriti esistano
+                if myFunction.check(conn, "Studente", "Matricola", attributi[-2]) and myFunction.check(conn, "Gruppo", "ID", attributi[-1]):
+                    myFunction.update(conn, "Esame", attributi, valori, "ID = '" + id + "'")
+                else:
+                    print("I dati inseriti non sono corretti")
 
-        # Chiedo l'id in input
-        myFunction.printTable(conn, "SELECT * FROM Tipo")
-        print("Selezionare l'id da modificare ", end="")
-        id = input()
+            # Se l'id non esiste scrivo messaggio d'errore
+            else:
+                print("L'id scelto non esiste")
+        if choose == "4":
 
-        # Controllo che l'id inserito esista
-        if myFunction.check(conn, "Tipo", "ID", id):
+            # Chiedo l'id in input
+            myFunction.printTable(conn, "SELECT * FROM Tipo")
+            print("Selezionare l'id da modificare ", end="")
+            id = input()
 
-            # Richiedo tutti gli altri campi
-            campi = ["Tipo", "Frontale"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
+            # Controllo che l'id inserito esista
+            if myFunction.check(conn, "Tipo", "ID", id):
+
+                # Richiedo tutti gli altri campi
+                campi = ["Tipo", "Frontale"]
+                valori = []
+                for n in campi:
                     print(n + " = ", end="")
                     temp = input()
-                valori.append(temp)
+                    while len(temp) == 0:
+                        print(n + " = ", end="")
+                        temp = input()
+                    valori.append(temp)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Tipo", "Frontale"]
-            myFunction.update(conn, "Tipo", attributi, valori, "ID = '" + id + "'")
+                # Eseguo la funzione di aggiornamento
+                attributi = ["Tipo", "Frontale"]
+                myFunction.update(conn, "Tipo", attributi, valori, "ID = '" + id + "'")
 
-        # Se l'id non esiste scrivo messaggio d'errore
-        else:
-            print("L'id scelto non esiste")
-    if choose == "5":
+            # Se l'id non esiste scrivo messaggio d'errore
+            else:
+                print("L'id scelto non esiste")
+        if choose == "5":
 
-        # Chiedo l'id in input
-        myFunction.printTable(conn, "SELECT * FROM Programma")
-        print("Selezionare l'id da modificare ", end="")
-        id = input()
+            # Chiedo l'id in input
+            myFunction.printTable(conn, "SELECT * FROM Programma")
+            print("Selezionare l'id da modificare ", end="")
+            id = input()
 
-        # Controllo che l'id inserito esista
-        if myFunction.check(conn, "Programma", "ID", id):
+            # Controllo che l'id inserito esista
+            if myFunction.check(conn, "Programma", "ID", id):
 
-            # Richiedo tutti gli altri campi
-            campi = ["Descrizione", "Bibliografia"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
+                # Richiedo tutti gli altri campi
+                campi = ["Descrizione", "Bibliografia"]
+                valori = []
+                for n in campi:
                     print(n + " = ", end="")
                     temp = input()
-                valori.append(temp)
+                    while len(temp) == 0:
+                        print(n + " = ", end="")
+                        temp = input()
+                    valori.append(temp)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Descrizione", "Bibliografia"]
-            myFunction.update(conn, "Programma", attributi, valori, "ID = '" + id + "'")
+                # Eseguo la funzione di aggiornamento
+                attributi = ["Descrizione", "Bibliografia"]
+                myFunction.update(conn, "Programma", attributi, valori, "ID = '" + id + "'")
 
-        # Se l'id non esiste scrivo messaggio d'errore
-        else:
-            print("L'id scelto non esiste")
-    if choose == "6":
+            # Se l'id non esiste scrivo messaggio d'errore
+            else:
+                print("L'id scelto non esiste")
+        if choose == "6":
 
-        # Stampo i gruppi, i docenti, i tipi di esercitazione e i programmi d'esame
-        myFunction.printTable(conn, "SELECT * FROM Docente")
-        myFunction.printTable(conn, "SELECT * FROM Tipo")
-        myFunction.printTable(conn, "SELECT * FROM Programma")
-        myFunction.printTable(conn, "SELECT * FROM Gruppo")
-        print("Selezionare l'id del gruppo da modificare ", end="")
-        id = input()
+            # Stampo i gruppi, i docenti, i tipi di esercitazione e i programmi d'esame
+            myFunction.printTable(conn, "SELECT * FROM Docente")
+            myFunction.printTable(conn, "SELECT * FROM Tipo")
+            myFunction.printTable(conn, "SELECT * FROM Programma")
+            myFunction.printTable(conn, "SELECT * FROM Gruppo")
+            print("Selezionare l'id del gruppo da modificare ", end="")
+            id = input()
 
-        # Controllo che l'id inserito esista
-        if myFunction.check(conn, "Gruppo", "ID", id):
+            # Controllo che l'id inserito esista
+            if myFunction.check(conn, "Gruppo", "ID", id):
 
-            # Richiedo tutti gli altri campi
-            campi = ["Orario", "Anno Accademico", "Tipo Esercitazione", "Matricola Docente", "Programma"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
+                # Richiedo tutti gli altri campi
+                campi = ["Orario", "Anno Accademico", "Tipo Esercitazione", "Matricola Docente", "Programma"]
+                valori = []
+                for n in campi:
                     print(n + " = ", end="")
                     temp = input()
-                valori.append(temp)
+                    while len(temp) == 0:
+                        print(n + " = ", end="")
+                        temp = input()
+                    valori.append(temp)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Orario", "Anno_Accademico", "ID_Tipo", "Matricola_Doc", "ID_Pro"]
-            myFunction.update(conn, "Gruppo", attributi, valori, "ID = '" + id + "'")
+                # Eseguo la funzione di aggiornamento
+                attributi = ["Orario", "Anno_Accademico", "ID_Tipo", "Matricola_Doc", "ID_Pro"]
 
-        # Se l'id non esiste scrivo messaggio d'errore
-        else:
-            print("L'id scelto non esiste")
-    if choose == "7":
+                if myFunction.check(conn, "Tipo", "ID", attributi[-3]) and myFunction.check(conn,
+                    "Docente", "Matricola", attributi[-2]) and myFunction.check(conn, "Programma", "ID", attributi[-1]):
+                    myFunction.update(conn, "Gruppo", attributi, valori, "ID = '" + id + "'")
+                else:
+                    print("I dati inseriti non sono corretti")
 
-        # Stampo le partecipazioni, gli studenti e i gruppi
-        myFunction.printTable(conn, "SELECT * FROM Studente")
-        myFunction.printTable(conn, "SELECT * FROM Gruppo")
-        myFunction.printTable(conn, "SELECT * FROM Partecipa")
-        print("Selezionare l'id della partecipazione da modificare ", end="")
-        id = input()
+            # Se l'id non esiste scrivo messaggio d'errore
+            else:
+                print("L'id scelto non esiste")
+        if choose == "7":
 
-        # Controllo che l'id inserito esista
-        if myFunction.check(conn, "Partecipa", "ID", id):
+            # Stampo le partecipazioni, gli studenti e i gruppi
+            myFunction.printTable(conn, "SELECT * FROM Studente")
+            myFunction.printTable(conn, "SELECT * FROM Gruppo")
+            myFunction.printTable(conn, "SELECT * FROM Partecipa")
+            print("Selezionare l'id della partecipazione da modificare ", end="")
+            id = input()
 
-            # Richiedo tutti gli altri campi
-            campi = ["Matricola", "Gruppo"]
-            valori = []
-            for n in campi:
-                print(n + " = ", end="")
-                temp = input()
-                while len(temp) == 0:
+            # Controllo che l'id inserito esista
+            if myFunction.check(conn, "Partecipa", "ID", id):
+
+                # Richiedo tutti gli altri campi
+                campi = ["Matricola", "Gruppo"]
+                valori = []
+                for n in campi:
                     print(n + " = ", end="")
                     temp = input()
-                valori.append(temp)
+                    while len(temp) == 0:
+                        print(n + " = ", end="")
+                        temp = input()
+                    valori.append(temp)
 
-            # Eseguo la funzione di aggiornamento
-            attributi = ["Matricola_Stud", "ID_Gruppo"]
-            myFunction.update(conn, "Partecipa", attributi, valori, "ID = '" + id + "'")
+                # Eseguo la funzione di aggiornamento
+                attributi = ["Matricola_Stud", "ID_Gruppo"]
+                if myFunction.check(conn, "Studente", "Matricola", attributi[-2]) and myFunction.check(conn, "Gruppo", "ID", attributi[-1]):
+                    myFunction.update(conn, "Partecipa", attributi, valori, "ID = '" + id + "'")
+                else:
+                    print("I dati inseriti non sono corretti")
 
-        # Se l'id non esiste scrivo messaggio d'errore
-        else:
-            print("L'id scelto non esiste")
-    if choose == "8":
-        os.system("cls")
+            # Se l'id non esiste scrivo messaggio d'errore
+            else:
+                print("L'id scelto non esiste")
+        if choose == "8":
+            os.system("cls")
 
 # Menù Ricerca
 if choose == "5":
