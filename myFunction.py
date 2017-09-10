@@ -7,6 +7,15 @@ def check(conn, name, attribute, value):
     else:
         return True
 
+#Funzione che controlla il numero di esami presenti per uno studente di un gruppo
+def checkExams(conn, values):
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Studente WHERE Matricola_Stud = '" + values[-2] + "' AND ID_Gruppo = '" + values[-1] + "'")
+    if cursor.rowcount < 3:
+        return True
+    else:
+        return False
+
 #Funzione che stampa una tabella completa di struttura
 def printTable(conn, query):
 

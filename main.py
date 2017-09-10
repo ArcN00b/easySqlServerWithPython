@@ -83,7 +83,6 @@ if choose == "1":
             myFunction.insertInto(conn, "Studente", attributi, valori)
 
         #Inserimento nuovo esame
-        #TODO fare si che non si possano inserire più di 3 esami per lo stesso gruppo e lo stesso studente
         if choose == "3":
 
             # Stampo gli studenti già presenti
@@ -105,9 +104,11 @@ if choose == "1":
 
             # Eseguo la query di inserimento
             attributi = "Voto, Lode, Tipo, Data, Matricola_Stud, ID_Gruppo"
-            if myFunction.check(conn, "Studente", "Matricola", valori[-2]) and myFunction.check(conn, "Gruppo", "ID",
-                                                                                                   valori[-1]):
-                myFunction.insertInto(conn, "Esame", attributi, valori)
+            if myFunction.check(conn, "Studente", "Matricola", valori[-2]) and myFunction.check(conn,"Gruppo", "ID", valori[-1]):
+                if myFunction.checkExams(conn, valori):
+                    myFunction.insertInto(conn, "Esame", attributi, valori)
+                else:
+                    print("Non è possibile inserire più di 3 esami per studente in ogni gruppo")
             else:
                 print("I valori inseriti non sono corretti")
 
@@ -415,7 +416,10 @@ if choose == "4":
 
                 # Controllo che i dati inseriti esistano
                 if myFunction.check(conn, "Studente", "Matricola", valori[-2]) and myFunction.check(conn, "Gruppo", "ID", valori[-1]):
-                    myFunction.update(conn, "Esame", attributi, valori, "ID = '" + id + "'")
+                    if myFunction.checkExams(conn, valori):
+                        myFunction.update(conn, "Esame", attributi, valori, "ID = '" + id + "'")
+                    else:
+                        print("Non è possibile inserire più di 3 esami per studente in ogni gruppo")
                 else:
                     print("I dati inseriti non sono corretti")
 
