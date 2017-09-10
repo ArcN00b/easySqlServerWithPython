@@ -3,8 +3,10 @@ def check(conn, name, attribute, value):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM " + name + " WHERE " + attribute + " = '" + value + "'")
     if cursor.rowcount == 0:
+        cursor.close()
         return False
     else:
+        cursor.close()
         return True
 
 #Funzione che controlla il numero di esami presenti per uno studente di un gruppo
@@ -12,8 +14,10 @@ def checkExams(conn, values):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Studente WHERE Matricola_Stud = '" + values[-2] + "' AND ID_Gruppo = '" + values[-1] + "'")
     if cursor.rowcount < 3:
+        cursor.close()
         return True
     else:
+        cursor.close()
         return False
 
 #Funzione che stampa una tabella completa di struttura
@@ -50,6 +54,7 @@ def printTable(conn, query):
         print(tavnit % tuple(row))
     print(separator)
     print("")
+    cursor.close()
 
 # Funzione che inserisce i valori all'interno delle tuple utilizzando gli attributi
 def insertInto(conn, name, attributes, values):
@@ -64,6 +69,7 @@ def insertInto(conn, name, attributes, values):
     except Exception as e:
         conn.rollback()
         print(e)
+    cursor.close()
 
 # Funzione che cancella le tuple utilizzando gli attributi
 def deleteFrom(conn, name, attribute, value):
@@ -78,6 +84,7 @@ def deleteFrom(conn, name, attribute, value):
         except Exception as e:
             conn.rollback()
             print(e)
+        cursor.close()
 
 def update(conn, name, attributes, values, condition):
     cursor = conn.cursor()
@@ -93,3 +100,4 @@ def update(conn, name, attributes, values, condition):
     except Exception as e:
         conn.rollback()
         print(e)
+    cursor.close()
