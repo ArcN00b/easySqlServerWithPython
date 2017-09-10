@@ -22,7 +22,6 @@ print(30 * '-')
 choose = input()
 
 # Menù inserimento
-#TODO Controllare l'inserimento di parametri references a nulla
 if choose == "1":
 
     # Ripeto finchè la scelta non è 8
@@ -106,7 +105,11 @@ if choose == "1":
 
             # Eseguo la query di inserimento
             attributi = "Voto, Lode, Tipo, Data, Matricola_Stud, ID_Gruppo"
-            myFunction.insertInto(conn, "Esame", attributi, valori)
+            if myFunction.check(conn, "Studente", "Matricola", valori[-2]) and myFunction.check(conn, "Gruppo", "ID",
+                                                                                                   valori[-1]):
+                myFunction.insertInto(conn, "Esame", attributi, valori)
+            else:
+                print("I valori inseriti non sono corretti")
 
         # Inserimento nuovo tipo di esercitazione
         if choose == "4":
@@ -172,7 +175,11 @@ if choose == "1":
 
             # Eseguo la query di inserimento
             attributi = "Orario, Anno_Accademico, ID_Tipo, Matricola_Doc, ID_Pro"
-            myFunction.insertInto(conn, "Gruppo", attributi, valori)
+            if myFunction.check(conn, "Tipo", "ID", valori[-3]) and myFunction.check(conn,
+                "Docente", "Matricola", valori[-2]) and myFunction.check(conn, "Programma", "ID", valori[-1]):
+                myFunction.insertInto(conn, "Gruppo", attributi, valori)
+            else:
+                print("I dati inseriti non sono corretti")
 
         # Inserimento nuova partecipazione
         if choose == "7":
@@ -195,8 +202,10 @@ if choose == "1":
 
             # Eseguo la query di inserimento
             attributi = "Matricola_Stud, ID_Gruppo"
-            myFunction.insertInto(conn, "Partecipa", attributi, valori)
-
+            if myFunction.check(conn, "Studente", "Matricola", valori[-2]) and myFunction.check(conn, "Gruppo", "ID", valori[-1]):
+                myFunction.insertInto(conn, "Partecipa", attributi, valori)
+            else:
+                print("I dati inseriti non sono corretti")
         if choose == "8":
             os.system("cls")
 
@@ -405,7 +414,7 @@ if choose == "4":
                 attributi = ["Voto", "Lode", "Tipo", "Data", "Matricola_Stud", "ID_Gruppo"]
 
                 # Controllo che i dati inseriti esistano
-                if myFunction.check(conn, "Studente", "Matricola", attributi[-2]) and myFunction.check(conn, "Gruppo", "ID", attributi[-1]):
+                if myFunction.check(conn, "Studente", "Matricola", valori[-2]) and myFunction.check(conn, "Gruppo", "ID", valori[-1]):
                     myFunction.update(conn, "Esame", attributi, valori, "ID = '" + id + "'")
                 else:
                     print("I dati inseriti non sono corretti")
@@ -496,8 +505,8 @@ if choose == "4":
                 # Eseguo la funzione di aggiornamento
                 attributi = ["Orario", "Anno_Accademico", "ID_Tipo", "Matricola_Doc", "ID_Pro"]
 
-                if myFunction.check(conn, "Tipo", "ID", attributi[-3]) and myFunction.check(conn,
-                    "Docente", "Matricola", attributi[-2]) and myFunction.check(conn, "Programma", "ID", attributi[-1]):
+                if myFunction.check(conn, "Tipo", "ID", valori[-3]) and myFunction.check(conn,
+                    "Docente", "Matricola", valori[-2]) and myFunction.check(conn, "Programma", "ID", valori[-1]):
                     myFunction.update(conn, "Gruppo", attributi, valori, "ID = '" + id + "'")
                 else:
                     print("I dati inseriti non sono corretti")
@@ -530,7 +539,7 @@ if choose == "4":
 
                 # Eseguo la funzione di aggiornamento
                 attributi = ["Matricola_Stud", "ID_Gruppo"]
-                if myFunction.check(conn, "Studente", "Matricola", attributi[-2]) and myFunction.check(conn, "Gruppo", "ID", attributi[-1]):
+                if myFunction.check(conn, "Studente", "Matricola", valori[-2]) and myFunction.check(conn, "Gruppo", "ID", valori[-1]):
                     myFunction.update(conn, "Partecipa", attributi, valori, "ID = '" + id + "'")
                 else:
                     print("I dati inseriti non sono corretti")
@@ -543,6 +552,7 @@ if choose == "4":
 
 # Menù Ricerca
 if choose == "5":
+    #TODO aggiungere ciclo while
     print("   MENU RICERCA ")
     print(30 * '-')
     print("1. Visualizza gli esami sostenuti da uno studente")
