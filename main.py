@@ -715,7 +715,7 @@ while choose != "0":
                 # Controllo che la matricola inserita esista ed eseguo la query
                 if myFunction.check(conn, "Docente", "Matricola", matricola):
 
-                    query = "SELECT D.Matricola, D.Nome, D.Cognome, S.Matricola, S.Nome, S.Cognome, E.Voto, E.Lode, E.Tipo, E.Data FROM Docente D " \
+                    query = "SELECT D.Matricola, D.Nome, D.Cognome, S.Matricola AS Matricola_Studente, S.Nome, S.Cognome, E.Voto, E.Lode, E.Tipo, E.Data FROM Docente D " \
                             "INNER JOIN Gruppo G ON D.Matricola = G.Matricola_Doc " \
                             "INNER JOIN Esame E ON G.ID = E.ID_Gruppo " \
                             "INNER JOIN Studente S ON S.Matricola = E.Matricola_Stud WHERE D.Matricola = '" + matricola + "'"
