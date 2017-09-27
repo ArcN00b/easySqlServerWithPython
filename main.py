@@ -698,7 +698,7 @@ while choose != "0":
                 if myFunction.check(conn, "Studente", "Matricola", matricola):
 
                     query = "SELECT S.Matricola, S.Nome, S.Cognome, G.ID, G.Orario, G.Anno_Accademico FROM Studente S " \
-                            "INNER JOIN Partecipa P ON S.Matricola = P.Matricola_Stud " \ 
+                            "INNER JOIN Partecipa P ON S.Matricola = P.Matricola_Stud " \
                             "INNER JOIN Gruppo G ON P.ID_Gruppo = G.ID WHERE S.Matricola = '" + matricola + "'"
                     myFunction.printTable(conn, query)
 
