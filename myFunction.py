@@ -29,7 +29,7 @@ def printTable(conn, query):
 
     # Controllo la presenza di tuple
     if cursor.rowcount == 0:
-        print("Nessun risultato")
+        print("\nNessun risultato!\n")
 
     # Se è presente almeno una tupla stampo il risultato
     else:
