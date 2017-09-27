@@ -628,7 +628,7 @@ while choose != "0":
                 # Controllo che la matricola inserita esista ed eseguo la query
                 if myFunction.check(conn, "Docente", "Matricola", matricola):
 
-                    query = "SELECT D.Matricola, D.Nome, D.Cognome, G.ID, G.Orario, G.Anno_Accademico, FROM Docente D " \
+                    query = "SELECT D.Matricola, D.Nome, D.Cognome, G.ID, G.Orario, G.Anno_Accademico FROM Docente D " \
                             "INNER JOIN Gruppo G ON D.Matricola = G.Matricola_Doc WHERE D.Matricola = '" + matricola + "'"
                     myFunction.printTable(conn, query)
 
