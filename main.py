@@ -571,7 +571,7 @@ while choose != "0":
             print("5. Visualizza il programma d'esame di un gruppo")
             print("6. Visualizza i partecipanti di un gruppo")
             print("7. Visualizza i gruppi a cui partecipa uno studente")
-            print("8. Visualizza tutti gli esami che un docente firmato")
+            print("8. Visualizza tutti gli esami che un docente ha firmato")
             print("9. Torna al menu precedente")
 
             # Input della scelta
