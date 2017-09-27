@@ -26,34 +26,43 @@ def printTable(conn, query):
     # Connessione al database per ottenere l'informazione sulla tabella
     cursor = conn.cursor()
     cursor.execute(query)
-    results = cursor.fetchall()
 
-    # Variabili locali utili per formattare correttamente la stampa
-    widths = []
-    columns = []
-    tavnit = '|'
-    separator = '+'
+    # Controllo la presenza di tuple
+    if cursor.rowcount == 0:
+        print("Nessun risultato")
 
-    # Controllo della larghezza delle varie colonne
-    for cd in cursor.description:
-        widths.append(max(len(cd[0]), cd[4]))
-        columns.append(cd[0])
+    # Se è presente almeno una tupla stampo il risultato
+    else:
+        results = cursor.fetchall()
 
-    # Aggiunta della quantità di simboli da inserire per la corretta formattazione
-    for w in widths:
-        tavnit += " %-" + "%ss |" % (w,)
-        separator += '-' * w + '--+'
+        # Variabili locali utili per formattare correttamente la stampa
+        widths = []
+        columns = []
+        tavnit = '|'
+        separator = '+'
 
-    # Stampa dei dati formattati
-    if len(query.split("FROM")[-1]) < 25:
-        print(query.split(" ")[-1])
-    print(separator)
-    print(tavnit % tuple(columns))
-    print(separator)
-    for row in results:
-        print(tavnit % tuple(row))
-    print(separator)
-    print("")
+        # Controllo della larghezza delle varie colonne
+        for cd in cursor.description:
+            widths.append(max(len(cd[0]), cd[4]))
+            columns.append(cd[0])
+
+        # Aggiunta della quantità di simboli da inserire per la corretta formattazione
+        for w in widths:
+            tavnit += " %-" + "%ss |" % (w,)
+            separator += '-' * w + '--+'
+
+        # Stampa dei dati formattati
+        if len(query.split("FROM")[-1]) < 25:
+            print(query.split(" ")[-1])
+        print(separator)
+        print(tavnit % tuple(columns))
+        print(separator)
+        for row in results:
+            print(tavnit % tuple(row))
+        print(separator)
+        print("")
+
+    # Chiudo il cursore
     cursor.close()
 
 # Funzione che inserisce i valori all'interno delle tuple utilizzando gli attributi
